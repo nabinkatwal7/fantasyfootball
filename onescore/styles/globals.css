@@ -11,6 +11,7 @@ body{
 .navbar{
     width: 100%;
     background-color: #28231d;
+    border-bottom: 1px solid burlywood;
 }
 
 .navbar ul{
@@ -38,10 +39,10 @@ body{
 
 /* PAGE FOOTER  */
 .footer{
-    border-top: 2px solid #f4f4f4;
+    border-top: 1px solid burlywood;
     position: fixed;
     width: 100%;
     bottom: 0;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
 }
