@@ -102,3 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
+onescore/apikey.txt
+onescore/pages/livescore/index.js
