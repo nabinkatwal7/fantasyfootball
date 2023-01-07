@@ -19,7 +19,7 @@ function index() {
       const response = await fetch('https://sportscore1.p.rapidapi.com/sports/1/events/live?page=1', options)
       const result = await response.json();
       console.log(result)
-      setScores(result.data);
+      await setScores(result.data);
       console.log(scores)
     }
     fetchScores()
