@@ -46,3 +46,28 @@ body{
     font-size: 14px;
     text-align: center;
 } 
+
+/* LIVESCORE PAGE  */
+.sidebar{
+    font-size: 19px;
+    line-height: 19px;
+    text-decoration: rgb(255, 255, 255);
+    word-spacing: 0px;
+    background: 0% 0%;
+    height: 560px;
+    width: 280px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.league-list{
+    font-size: 18px;
+    height: 60px;
+    width: 280px;
+    padding: 0 20px 0 20px;
+    min-height: auto;
+    min-width: auto;
+    display: flex;
+    box-sizing: border-box;
+    border-radius:25px;
+}
