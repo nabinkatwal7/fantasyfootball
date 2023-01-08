@@ -49,7 +49,6 @@ body{
 
 /* LIVESCORE PAGE  */
 .sidebar{
-    font-size: 19px;
     line-height: 19px;
     text-decoration: rgb(255, 255, 255);
     word-spacing: 0px;
@@ -57,29 +56,45 @@ body{
     height: 560px;
     width: 280px;
     display: flex;
+    flex-direction: column;
     box-sizing: border-box;
 }
 
-.league-list{
-    font-size: 18px;
-    height: 60px;
-    width: 280px;
-    padding: 0 20px 0 20px;
-    min-height: auto;
-    min-width: auto;
-    display: flex;
-    box-sizing: border-box;
-    border-radius:25px;
+.sidebar h2{
+    font-size: 31px;
 }
 
-.league-list h2{
+.top-leagues{
+    list-style: none;
+}
+
+
+.top-leagues li{
     font-size: 21px;
-    line-height: 21px;
-    word-spacing: 0px;
-    height: 21px;
-    width: 111.533px;
-    min-height: auto;
-    min-width: auto;
-    display: block;
-    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.top-leagues li a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.live{
+    display: flex;
+    flex-direction: row;
+}
+
+.scores{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.scorecard{
+    display: flex;
+    text-align: center;
+    width: inherit;
+    justify-content: space-around;
+    margin-left: 50px;
+    padding: 10px;
 }

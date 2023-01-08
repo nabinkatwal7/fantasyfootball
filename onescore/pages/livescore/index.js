@@ -26,11 +26,9 @@ function index() {
   //   fetchScores()
   // },[])
   return (
-    <div>
+    <div className='live' >
       <div className='sidebar'>
-        <div  className='league-list' >
         <h2>Top Leagues</h2>
-        </div>
         <ul className='top-leagues'>
           <li>
             <Link href='#' >Premier League</Link>
@@ -39,12 +37,35 @@ function index() {
             <Link href='#' >Champions league</Link>
           </li>
           <li>
+            <Link href='#' >Europa League</Link>
+          </li>
+          <li>
             <Link href='#' >LaLiga</Link>
           </li>
           <li>
-            <Link href='#' >French League</Link>
+            <Link href='#' >Ligue 1</Link>
+          </li>
+          <li>
+            <Link href='#' >Bundesliga</Link>
+          </li>
+          <li>
+            <Link href='#' >Serie A</Link>
           </li>
         </ul>
+      </div>
+      <div className='scores' >
+        <h1>Scores</h1>
+        <div className='league' >
+          <h4>Spain - La Liga</h4>
+          <div className='scorecard' >
+            <p className='home' >Espanyol</p><p className='score' >2-2</p><p className='away' >Girona</p>
+            <p className='time' >FT</p>
+          </div>
+          <div className='scorecard' >
+            <p className='home' >Atletico Madrid</p><p className='score' >-</p><p className='away' >Barcelona</p>
+            <p className='time' >TBD</p>
+          </div>
+        </div>
       </div>
     </div>
   )
