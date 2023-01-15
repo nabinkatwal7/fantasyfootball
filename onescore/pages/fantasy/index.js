@@ -1,8 +1,12 @@
-import React from 'react'
+import Link from "next/link"
 
 function index() {
   return (
-    <div>Fantasy Page</div>
+    <div className="home-page-container" >
+      <div className="header">
+        <h1 className="title" >Welcome to OneScore Fantasy Football!</h1>
+      </div>
+    </div>
   )
 }
 
