@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const TransactionSchema = new mongoose.Schema({
     player: { type: mongoose.Schema.Types.ObjectId, ref: 'Player' },
     price: { type: Number },
