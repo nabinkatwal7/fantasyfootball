@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
 
 body{
-    background-color: #28231d;
+    background-color: #005792;
     color: #f4f4f4;
     margin-top: 0;
     font-family: 'Overpass', sans-serif;
@@ -10,7 +10,7 @@ body{
 /* NAVBAR  */
 .navbar{
     width: 100%;
-    background-color: #28231d;
+    background: url('https://www.premierleague.com/resources/prod/v6.110.0-4750/i/bg-elements/heading-bg-desktop.svg') center center;
     border-bottom: 1px solid burlywood;
 }
 
@@ -39,6 +39,7 @@ body{
 
 /* PAGE FOOTER  */
 .footer{
+    background: url('https://www.premierleague.com/resources/prod/v6.110.0-4750/i/bg-elements/heading-bg-desktop.svg') repeat-x center center;
     border-top: 1px solid burlywood;
     position: fixed;
     width: 100%;
