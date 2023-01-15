@@ -9,3 +9,5 @@ const LeagueSchema = new mongoose.Schema({
     rules: { type: String },
     createdAt: { type: Date, default: Date.now }
 });
+
+const League = mongoose.model('League', LeagueSchema);

@@ -12,3 +12,5 @@ const PlayerSchema = new mongoose.Schema({
     image: { type: String },
     createdAt: { type: Date, default: Date.now }
 });
+
+const Player = mongoose.model('Player', PlayerSchema);

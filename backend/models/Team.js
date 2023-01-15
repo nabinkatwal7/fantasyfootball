@@ -6,3 +6,5 @@ const TeamSchema = new mongoose.Schema({
     points: { type: Number },
     createdAt: { type: Date, default: Date.now }
 });
+
+const Team = mongoose.model('Team', TeamSchema);

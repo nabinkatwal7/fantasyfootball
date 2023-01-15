@@ -6,3 +6,5 @@ const TransactionSchema = new mongoose.Schema({
     fantasyTeam: { type: mongoose.Schema.Types.ObjectId, ref: 'FantasyTeam' },
     createdAt: { type: Date, default: Date.now }
 });
+
+const Transaction = mongoose.model('Transaction', TransactionSchema);

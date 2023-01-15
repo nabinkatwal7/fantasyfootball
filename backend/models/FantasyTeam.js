@@ -7,3 +7,5 @@ const FantasyTeamSchema = new mongoose.Schema({
     points: { type: Number },
     createdAt: { type: Date, default: Date.now }
 });
+
+const FantasyTeam = mongoose.model('FantasyTeam', FantasyTeamSchema);
