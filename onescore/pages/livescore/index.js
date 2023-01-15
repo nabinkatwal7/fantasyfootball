@@ -21,10 +21,10 @@ function index() {
   //     const result = await response.json();
   //     console.log(result)
   //     await setScores(result.data);
-  //     console.log(scores)
   //   }
   //   fetchScores()
   // },[])
+
   return (
     <div className='live' >
       <div className='sidebar'>
