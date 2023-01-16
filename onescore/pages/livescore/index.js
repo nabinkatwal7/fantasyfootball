@@ -5,26 +5,26 @@ import Link from 'next/link'
 
 function index() {
 
-  const [scores, setScores] = useState([])
-  const [selectedLeague, setSelectedLeague] = useState('England')
+  // const [scores, setScores] = useState([])
+  // const [selectedLeague, setSelectedLeague] = useState('England')
   
-  // API Key for sportscore1
-  // const API_KEY = '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
+  // // API Key for sportscore1
+  // // const API_KEY = '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
 
-  useEffect(() => {
-    const fetchScores = async () => {
-      const res = await fetch(`https://raw.githubusercontent.com/statsbomb/open-data/master/data/11.json`)
-      const data = await res.json()
-      //Filter the data for only the live matches
-      const liveMatches = data.filter(match => match.match_status === "live")
-      setScores(liveMatches)
-    }
-    fetchScores()
-  }, [selectedLeague])
+  // useEffect(() => {
+  //   const fetchScores = async () => {
+  //     const res = await fetch(`https://raw.githubusercontent.com/statsbomb/open-data/master/data/11.json`)
+  //     const data = await res.json()
+  //     //Filter the data for only the live matches
+  //     const liveMatches = data.filter(match => match.match_status === "live")
+  //     setScores(liveMatches)
+  //   }
+  //   fetchScores()
+  // }, [selectedLeague])
 
   return (
     <div className="livescore-container">
-      <div className="left-bar">
+      {/* <div className="left-bar">
         <h2 className="bar-title">Select a league</h2>
         <button className={`league-button ${selectedLeague === 'England' ? 'selected' : ''}`} onClick={() => setSelectedLeague('England')}>England</button>
         <button className={`league-button ${selectedLeague === 'Spain' ? 'selected' : ''}`} onClick={() => setSelectedLeague('Spain')}>Spain</button>
@@ -40,7 +40,8 @@ function index() {
                 <div className="team-name">{score.away_team}</div>
               </div>
             ))}
-          </div>
+          </div> */}
+          <h1>Livescore</h1>
         </div>
   )
 }
