@@ -1,20 +1,38 @@
+// export async function getStaticProps(){
+//   const leagueIds = [2021, 2014, 2015, 2002, 2016];
+
+//   const standing = async () => {
+  
+//     const requests = leagueIds.map(id => 
+//       fetch(`https://api-football-v1.p.rapidapi.com/v2/leagueTable/${id}`, {
+//         headers: {
+//           'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+//           'x-rapidapi-key': '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
+//         }
+//       })
+//     )
+//     const res = await Promise.all(requests)
+//     const json = await res.map(response => response.json())
+//     return { standings: json.map(data => data.api.standings) }
+// }
+
 function Homepage() {
 
-  const leagueIds = [2021, 2014, 2015, 2002, 2016];
+  // const leagueIds = [2021, 2014, 2015, 2002, 2016];
 
-  const standing = async () => {
+  // const standing = async () => {
   
-    const requests = leagueIds.map(id => 
-      fetch(`https://api-football-v1.p.rapidapi.com/v2/leagueTable/${id}`, {
-        headers: {
-          'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-          'x-rapidapi-key': '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
-        }
-      })
-    )
-    const res = await Promise.all(requests)
-    const json = await res.map(response => response.json())
-    return { standings: json.map(data => data.api.standings) }
+  //   const requests = leagueIds.map(id => 
+  //     fetch(`https://api-football-v1.p.rapidapi.com/v2/leagueTable/${id}`, {
+  //       headers: {
+  //         'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+  //         'x-rapidapi-key': '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
+  //       }
+  //     })
+  //   )
+  //   const res = await Promise.all(requests)
+  //   const json = await res.map(response => response.json())
+  //   return { standings: json.map(data => data.api.standings) }
 
   // const requests = async leagueIds.map(id => 
   //   fetch(`https://api-football-v1.p.rapidapi.com/v2/leagueTable/${id}`, {
@@ -30,7 +48,7 @@ function Homepage() {
 
   return (
     <div className="standings-container">
-    {props.standings.map((standing, index) => (
+    {/* {props.standings.map((standing, index) => (
       <div key={index}>
         <h2 className="league-name">{standing.league.name}</h2>
         <table className="table">
@@ -66,7 +84,7 @@ function Homepage() {
               </tbody>
             </table>
           </div>
-        ))}
+        ))} */}
       </div>
   )
 }
