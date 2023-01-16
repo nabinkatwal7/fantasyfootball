@@ -9,13 +9,15 @@ function index() {
   const [selectedLeague, setSelectedLeague] = useState('England')
   
   // API Key for sportscore1
-  const API_KEY = '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
+  // const API_KEY = '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
 
   useEffect(() => {
     const fetchScores = async () => {
-      const res = await fetch(`https://api.sportscore1.com/v2/livescores?league=${selectedLeague}&api_key=${API_KEY}`)
+      const res = await fetch(`https://raw.githubusercontent.com/statsbomb/open-data/master/data/11.json`)
       const data = await res.json()
-      setScores(data.matches)
+      //Filter the data for only the live matches
+      const liveMatches = data.filter(match => match.match_status === "live")
+      setScores(liveMatches)
     }
     fetchScores()
   }, [selectedLeague])
