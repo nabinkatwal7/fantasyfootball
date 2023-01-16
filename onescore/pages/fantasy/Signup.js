@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+import Link from 'next/link'
 
 function Signup() {
 
@@ -33,6 +34,8 @@ function Signup() {
         <input type="password" id="repeat-password" value={repeatPassword} onChange={e => setRepeatPassword(e.target.value)} required />
       </div>
       <button className="submit-button" type="submit">Sign Up</button>
+      <p className="account-info">Already have an account? 
+      <Link href="/fantasy/Login" className="login-link">Log In instead</Link></p>
     </form>
     </div>
   )

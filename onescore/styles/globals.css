@@ -49,53 +49,70 @@ body{
 } 
 
 /* LIVESCORE PAGE  */
-.sidebar{
-    line-height: 19px;
-    text-decoration: rgb(255, 255, 255);
-    word-spacing: 0px;
-    background: 0% 0%;
-    height: 560px;
-    width: 280px;
+.livescore-container {
     display: flex;
-    flex-direction: column;
+  }
+  
+  .left-bar {
+    width: 20%;
+    background-color: #005792;
+    color: #fff;
+    padding: 20px;
     box-sizing: border-box;
-}
-
-.sidebar h2{
-    font-size: 31px;
-}
-
-.top-leagues{
-    list-style: none;
-}
-
-
-.top-leagues li{
-    font-size: 21px;
-    margin-top: 30px;
-}
-
-.top-leagues li a{
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.live{
-    display: flex;
-    flex-direction: row;
-}
-
-.scores{
+  }
+  
+  .bar-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .league-button {
     width: 100%;
-    align-items: center;
+    background-color: #fff;
+    color: #005792;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
     text-align: center;
-}
-
-.scorecard{
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .league-button:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .league-button.selected {
+    background-color: #003559;
+    color: #fff;
+  }
+  
+  .scores-container {
+    width: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .score-card {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .team-name {
+    width: 30%;
     text-align: center;
-    width: inherit;
-    justify-content: space-around;
-    margin-left: 50px;
-    padding: 10px;
-}
+    font-size: 18px;
+  }
+  
+  .score {
+    width: 40%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
