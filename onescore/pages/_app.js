@@ -5,6 +5,7 @@ import '../components/Homepage/Homepage.css'
 import './fantasy/Signup.css'
 import './fantasy/Login.css'
 import './fantasy/createTeam.css'
+import './fantasy/viewLeagues.css'
 
 export default function App({ Component, pageProps }) {
   return (
