@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Connect to the MongoDB database
-mongoose.connect('mongodb://localhost:27017/fantasy-soccer', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017', { useNewUrlParser: true });
 
 // Define routes for the Player resource
 app.get('/players', async (req, res) => {
