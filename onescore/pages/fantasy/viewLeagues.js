@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 
-const viewLeagues = () => {
+const ViewLeagues = () => {
     const [leagues, setLeagues] = useState([]);
     const [newLeagueName, setNewLeagueName] = useState("");
     const router = useRouter();
@@ -46,4 +46,4 @@ const viewLeagues = () => {
     );
 };
 
-export default viewLeagues;
+export default ViewLeagues;
