@@ -26,7 +26,7 @@ app.get('/players/:id', async (req, res) => {
 });
 
 app.post('/players', async (req, res) => {
-    const player = new Player(req.body);
+    const player = new Player(req.body); 
     await player.save();
     res.json(player);
 });
