@@ -12,7 +12,16 @@ const app = express();
 app.use(bodyParser.json());
 
 // Connect to the MongoDB database
-mongoose.connect('mongodb://localhost:27017', { useNewUrlParser: true });
+mongoose.connect('mongodb://127.0.0.1:27017/fantasysoccer', { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+ },(err)=>{
+    if(err){
+        console.log(err)
+    }else{
+        console.log('connected to db')
+    }
+ });
 
 // Define routes for the Player resource
 app.get('/players', async (req, res) => {
