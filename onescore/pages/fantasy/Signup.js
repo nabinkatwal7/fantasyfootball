@@ -15,31 +15,15 @@ function Signup() {
     repeatPassword: "",
   });
 
-  const CheckPassword = (password) => {
-    let strength = 0;
-    if (password.length < 8) {
-      return strength;
-    } else {
-      strength += 25;
-    }
-    if (password.match(/[a-z]+/)) {
-      strength += 25;
-    }
-    if (password.match(/[A-Z]+/)) {
-      strength += 25;
-    }
-    if (password.match(/[0-9]+/)) {
-      strength += 25;
-    }
-    return strength;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/users/register', {
+      const response = await fetch('http://localhost:5000/register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': "*" 
+        },
         body: JSON.stringify(formData),
       });
       const data = await response.json();
@@ -58,6 +42,10 @@ function Signup() {
     setPasswordStrength(CheckPassword(e.target.value));
   };
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  
   return (
     <div className="signupdiv">
       <form className="signup-form" onSubmit={handleSubmit}>
@@ -65,53 +53,39 @@ function Signup() {
         <div className="form-control">
           <label htmlFor="username">Username</label>
           <input
-            type="text"
-            id="username"
-            value={formData.username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
+             type="text"
+             name="username"
+             value={formData.username}
+             onChange={handleChange}
           />
         </div>
         <div className="form-control">
           <label htmlFor="email">Email</label>
           <input
             type="email"
-            id="email"
+            name="email"
             value={formData.email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            onChange={handleChange}
           />
         </div>
         <div className="form-control">
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            placeholder="Enter your password"
+            name="password"
             value={formData.password}
-            onChange={handlePasswordChange}
+            onChange={handleChange}
           />
         </div>
         <div className="form-control">
           <label htmlFor="repeat-password">Repeat Password</label>
           <input
             type="password"
-            id="repeat-password"
+            name="repeatPassword"
             value={formData.repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
+            onChange={handleChange}
             required
           />
-        </div>
-        <div className="password-strength-bar-container">
-          <div
-            className="password-strength-bar"
-            style={{ width: `${passwordStrength}%` }}
-          >
-            <p>
-              {passwordStrength === 0
-                ? "Password Strength"
-                : `${passwordStrength}% Strong`}
-            </p>
-          </div>
         </div>
         <button className="submit-button" type="submit">
           Sign Up

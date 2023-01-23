@@ -1,15 +1,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 const Player = require('./models/Player');
 const Team = require('./models/Team');
-const User = require('./models/User');
+const User = require('./models/User')
 const FantasyTeam = require('./models/FantasyTeam');
 const League = require('./models/League');
 const Transaction = require('./models/Transaction');
 
+const cors = require('cors')
+
+const router = express.Router()
 const app = express();
 app.use(bodyParser.json());
+app.use(cors())
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 
 // Connect to the MongoDB database
 mongoose.connect('mongodb://127.0.0.1:27017/fantasysoccer', { 
@@ -104,6 +116,31 @@ app.delete('/users/:id', async (req, res) => {
     res.json({ message: 'User deleted' });
 });
 
+app.post('/register', async (req,res)=>{
+    try{
+        const existingUser = await User.findOne({email: req.body.email})
+        if (existingUser){
+            return res.status(400).json({error: 'Email already in use'})
+        }
+
+        const salt = await bcrypt.genSalt()
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)
+
+        const user = new User({
+            username: req.body.username,
+            email: req.body.email, 
+            password: hashedPassword
+        })
+
+        await user.save()
+
+        res.status(201).json({message: 'User successfully registered'})
+    }catch(error){
+        console.error(error)
+        res.status(500).json({error: 'Server error'})
+    }
+})
+
 // Define routes for the FantasyTeam resource
 app.get('/fantasyteams', async (req, res) => {
     const fantasyteams = await FantasyTeam.find();
@@ -189,3 +226,6 @@ app.delete('/transactions/:id', async (req, res) => {
 app.listen(5000, () => {
     console.log('Server is running on port 5000');
 });
+
+
+module.exports = router
