@@ -11,6 +11,7 @@ const Transaction = require("./models/Transaction");
 
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+// const fetch = require('node-fetch')
 
 const router = express.Router();
 const app = express();
@@ -41,6 +42,35 @@ mongoose.connect(
     }
   }
 );
+
+// LIVESCORE SECTION 
+
+app.get('/livescore', async (req, res)=>{
+    try{
+        const leagues = ['England', 'Spain','France', 'Germany','Italy']
+
+        let liveScores = []
+
+        for (let league of leagues){
+            const response = await fetch(`https://sportapi1.p.rapidapi.com/v2/live/${league}`,{
+                method:'GET',
+                headers:{
+                    'X-RapidAPI-Key': '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
+                }
+            })
+            const data = await response.json()
+
+            liveScores.push(data)
+        }
+
+        res.json(liveScores)
+
+        console.log(liveScores)
+    }catch(err){
+        console.error(err)
+        res.status(500).json({message: 'Error fetching live score'})
+    }
+})
 
 // Define routes for the Player resource
 app.get("/players", async (req, res) => {
