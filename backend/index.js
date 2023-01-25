@@ -10,6 +10,7 @@ const League = require("./models/League");
 const Transaction = require("./models/Transaction");
 
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 const app = express();
@@ -159,18 +160,29 @@ app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   User.findOne({ email: email }).then((user) => {
-    if(!user){
-        return res.status(400).json({
-            message: 'User not found'
-        })
+    if (!user) {
+      return res.status(400).json({
+        message: "User not found",
+      });
     }
-    bcrypt.compare(password, user.password).then(isMatch=>{
-        if (!isMatch){
-            return res.status(400).json({
-                message: 'Incorrect password'
-            })
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (!isMatch) {
+        return res.status(400).json({
+          message: "Incorrect password",
+        });
+      }
+
+      const payload = {email: user.email, name: user.username };
+      jwt.sign(payload, "secret", { expiresIn: 3600 }, (err, token) => {
+        if(err){
+            throw err
         }
-    })
+        res.json({
+            success: true, 
+            token: `Bearer ${token}`
+        })
+      });
+    });
   });
 });
 
