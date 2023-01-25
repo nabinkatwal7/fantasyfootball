@@ -43,34 +43,30 @@ mongoose.connect(
   }
 );
 
-// LIVESCORE SECTION 
+// LIVESCORE SECTION
 
-app.get('/livescore', async (req, res)=>{
-    try{
-        const leagues = ['England', 'Spain','France', 'Germany','Italy']
+app.get("/livescore", async (req, res) => {
+  try {
+    const apiKey = "f34df6c6d6d844ab938f022876228517";
+    const leagueCodes = ["CL", "EC, PL", "PD", "SA", "BL1", "FL1"];
+    let liveScores = [];
 
-        let liveScores = []
-
-        for (let league of leagues){
-            const response = await fetch(`https://sportapi1.p.rapidapi.com/v2/live/${league}`,{
-                method:'GET',
-                headers:{
-                    'X-RapidAPI-Key': '7fa2c59a1cmsh4203229b559d2f2p176881jsn45a4b618065b'
-                }
-            })
-            const data = await response.json()
-
-            liveScores.push(data)
+    for (let i = 0; i < leagueCodes.length; i++) {
+      const response = await fetch(
+        `https://api.football-data.org/v2/competitions/${leagueCodes[i]}/matches`,
+        {
+          headers: { "X-Auth-Token": apiKey },
         }
-
-        res.json(liveScores)
-
-        console.log(liveScores)
-    }catch(err){
-        console.error(err)
-        res.status(500).json({message: 'Error fetching live score'})
+      );
+      const data = await response.json();
+      liveScores = liveScores.concat(data.matches);
     }
-})
+    res.json(liveScores);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 // Define routes for the Player resource
 app.get("/players", async (req, res) => {
@@ -202,15 +198,15 @@ app.post("/login", (req, res) => {
         });
       }
 
-      const payload = {email: user.email, name: user.username };
+      const payload = { email: user.email, name: user.username };
       jwt.sign(payload, "secret", { expiresIn: 3600 }, (err, token) => {
-        if(err){
-            throw err
+        if (err) {
+          throw err;
         }
         res.json({
-            success: true, 
-            token: `Bearer ${token}`
-        })
+          success: true,
+          token: `Bearer ${token}`,
+        });
       });
     });
   });
