@@ -1,5 +1,6 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -8,12 +9,21 @@ function Signup() {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [passwordStrength, setPasswordStrength] = useState(0);
 
+  const [status, setStatus] = useState()
+  const router = useRouter()
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     repeatPassword: "",
   });
+
+  useEffect(()=>{
+    if(status === 'success'){
+      router.push('/fantasy/Login')
+    }
+  },[status])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +41,11 @@ function Signup() {
         alert(data.error);
       } else {
         alert('Successfully registered');
+      }
+      if (response.ok){
+        setStatus('success')
+      }else{
+        setStatus('error')
       }
     } catch (err) {
       console.error(err);
