@@ -3,13 +3,24 @@ import {useState, useEffect} from 'react'
 import Link from 'next/link'
 
 
-function index() {
+function Index() {
+
+  const [livescores, setLivescores] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/livescore')
+      .then(res => res.json())
+      .then(data => setLivescores(data))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
-    <div className="livescore-container">
-          <h1>Livescore</h1>
-        </div>
+    <div>
+      {livescores.map(livescore => (
+        console.log(livescore)
+      ))}
+    </div>
   )
 }
 
-export default index
+export default Index
