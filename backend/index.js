@@ -50,17 +50,21 @@ app.get("/livescore", async (req, res) => {
     const apiKey = "f34df6c6d6d844ab938f022876228517";
     const leagueCodes = ["CL", "EC", "PL", "PD", "SA", "BL1", "FL1"];
     let liveScores = [];
-
-    for (let i = 0; i < leagueCodes.length; i++) {
-      const response = await fetch(
-        `https://api.football-data.org/v2/competitions/${leagueCodes[i]}/matches?limit=5`,
-        {
-          headers: { "X-Auth-Token": apiKey },
-        }
-      );
-      const data = await response.json();
-      liveScores = liveScores.concat(data.matches);
-    }
+    const response = await fetch('https://api.football-data.org/v4/matches', {
+      headers: { "X-Auth-Token": apiKey }
+    })
+    const data = await response.json()
+    liveScores = liveScores.concat(data.matches)
+    // for (let i = 0; i < leagueCodes.length; i++) {
+    //   const response = await fetch(
+    //     `https://api.football-data.org/v2/competitions/${leagueCodes[i]}/matches?limit=5`,
+    //     {
+    //       headers: { "X-Auth-Token": apiKey },
+    //     }
+    //   );
+    //   const data = await response.json();
+    //   liveScores = liveScores.concat(data.matches);
+    // }
     res.json(liveScores);
   } catch (err) {
     console.error(err);
