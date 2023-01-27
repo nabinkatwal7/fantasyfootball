@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
-import { Redirect } from "next";
+import {useRouter} from 'next/router'
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -38,8 +38,9 @@ function Login() {
   };
 
   if (redirect) {
-    return <Redirect to="/fantasy" />;
-  }
+    const router = useRouter()
+    router.push('/fantasy')
+    }
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
