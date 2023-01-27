@@ -2,12 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #00337C;
+  background-color: #f4f4f4;
   color: #fafafa;
+}
+
+.matchestoday{
+  font-size: 30px;
+  color: #000;
 }
 
 .livescorecard {
   width: 90%;
+  height: 200px;
   margin: 20px;
   padding: 20px;
   background-color: #2b2c2d;

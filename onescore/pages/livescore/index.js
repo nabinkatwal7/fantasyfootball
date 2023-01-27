@@ -17,6 +17,7 @@ function Index() {
 
   return (
     <div className="livescore">
+      <h3 className='matchestoday'>Matches today</h3>
       {livescores.map((livescore) => (
         <div key={livescore.index} className="livescorecard">
           <div className="country">
