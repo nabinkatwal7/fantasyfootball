@@ -1,8 +1,8 @@
 .login-form {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 100px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #2b2c2d;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px #aaa;
   }
@@ -11,7 +11,7 @@
     text-align: center;
     font-size: 28px;
     margin-bottom: 20px;
-    color: #005792;
+    color: #fff;
   }
   
   .form-control {
@@ -21,7 +21,7 @@
   label {
     display: block;
     font-size: 18px;
-    color: #333;
+    color: #fff;
   }
   
   input {

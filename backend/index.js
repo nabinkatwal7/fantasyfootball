@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+
 const Player = require("./models/Player");
 const Team = require("./models/Team");
 const User = require("./models/User");
@@ -55,41 +56,12 @@ app.get("/livescore", async (req, res) => {
     });
     const data = await response.json();
     liveScores = liveScores.concat(data.matches);
-    // for (let i = 0; i < leagueCodes.length; i++) {
-    //   const response = await fetch(
-    //     `https://api.football-data.org/v2/competitions/${leagueCodes[i]}/matches?limit=5`,
-    //     {
-    //       headers: { "X-Auth-Token": apiKey },
-    //     }
-    //   );
-    //   const data = await response.json();
-    //   liveScores = liveScores.concat(data.matches);
-    // }
     res.json(liveScores);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 });
-
-// app.get("/topscorers", async (req, res) => {
-//   try {
-//     const apiKey = "f34df6c6d6d844ab938f022876228517";
-//     const leagueCodes = ["CL", "EC", "PL", "PD", "SA", "BL1", "FL1"];
-//     let topscorer = [];
-//     const response = await fetch(
-//       `https://api.football-data.org/v4/competitions/PL/scorers`,
-//       {
-//         headers: { "X-Auth-Token": apiKey },
-//       }
-//     );
-//     const data = await response.json();
-//     topscorer = topscorer.concat(data);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json({ message: "Server errror" });
-//   }
-// });
 
 // Define routes for the Player resource
 app.get("/players", async (req, res) => {

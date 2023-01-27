@@ -44,7 +44,7 @@ function Login() {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      <h2 className="form-title">Log In</h2>
+      <h2 className="form-title">Pick up where you left</h2>
       <div className="form-control">
         <label htmlFor="email">Email</label>
         <input

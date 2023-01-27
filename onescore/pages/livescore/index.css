@@ -2,13 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #f4f4f4;
+  background-color: #191970;
   color: #fafafa;
 }
 
 .matchestoday{
   font-size: 30px;
-  color: #000;
+  color: #fff;
 }
 
 .livescorecard {
