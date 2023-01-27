@@ -11,3 +11,5 @@ const FantasyTeamSchema = new mongoose.Schema({
 });
 
 const FantasyTeam = mongoose.model('FantasyTeam', FantasyTeamSchema);
+
+module.exports = FantasyTeam
