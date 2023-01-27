@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
+const request = require('request')
 
 const Player = require("./models/Player");
 const Team = require("./models/Team");
@@ -13,6 +14,8 @@ const Transaction = require("./models/Transaction");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 // const fetch = require('node-fetch')
+
+const apiKey = "f34df6c6d6d844ab938f022876228517";
 
 const router = express.Router();
 const app = express();
@@ -64,9 +67,36 @@ app.get("/livescore", async (req, res) => {
 });
 
 // Define routes for the Player resource
-app.get("/players", async (req, res) => {
-  const players = await Player.find();
-  res.json(players);
+app.get('/players', (req, res) => {
+    const options = {
+        url: 'https://api.football-data.org/v4/competitions/2022/teams',
+        headers: {
+            'X-Auth-Token': apiKey
+        }
+    }
+
+    request(options, (error, response, body) => {
+      console.log(response)
+        if (!error && response.statusCode == 200) {
+            const teams = JSON.parse(body).teams;
+            let players = [];
+            teams.forEach((team) => {
+                team.squad.forEach((player) => {
+                    players.push({
+                        name: player.name,
+                        position: player.position,
+                        team: team.name,
+                        appearance: player.appearance,
+                        goal: player.goal,
+                        assist: player.assist
+                    });
+                });
+            });
+            res.json(players);
+        } else {
+            console.log(error);
+        }
+    });
 });
 
 app.get("/players/:id", async (req, res) => {
@@ -75,9 +105,7 @@ app.get("/players/:id", async (req, res) => {
 });
 
 app.post("/players", async (req, res) => {
-  const player = new Player(req.body);
-  await player.save();
-  res.json(player);
+  const csvData = fs.readFileSync()
 });
 
 app.put("/players/:id", async (req, res) => {

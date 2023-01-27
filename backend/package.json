@@ -13,11 +13,13 @@
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
+    "csv-parse": "^5.3.3",
     "espn-fantasy-football-api": "^0.16.1",
     "express": "^4.18.2",
     "fpl-api": "^4.0.4",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.3",
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^3.3.0",
+    "request": "^2.88.2"
   }
 }

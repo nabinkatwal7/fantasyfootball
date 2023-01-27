@@ -11,7 +11,10 @@ const PlayerSchema = new mongoose.Schema({
     redCards: { type: Number },
     form: { type: Number },
     price: { type: Number },
-    image: { type: String },
+    ict_index:{type: Number},
+    minutes: {type: Number},
+    expected_goals: {type:Number},
+    expected_assists:{type:Number},
     createdAt: { type: Date, default: Date.now }
 });
 
