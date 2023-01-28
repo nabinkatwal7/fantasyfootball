@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import Response from "../../public/response.json";
-
 function Index() {
   const [livescores, setLivescores] = useState([]);
 

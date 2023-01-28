@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
-const request = require('request')
+const request = require("request");
 
 const Player = require("./models/Player");
 const Team = require("./models/Team");
@@ -67,37 +67,59 @@ app.get("/livescore", async (req, res) => {
 });
 
 // Define routes for the Player resource
-app.get('/players', (req, res) => {
-    const options = {
-        url: 'https://api.football-data.org/v4/competitions/2022/teams',
-        headers: {
-            'X-Auth-Token': apiKey
-        }
-    }
+// app.get('/players', (req, res) => {
+//   // FPL API endpoint for getting all players
+//   const url = 'https://fantasy.premierleague.com/api/bootstrap-static/';
 
-    request(options, (error, response, body) => {
-      console.log(response)
-        if (!error && response.statusCode == 200) {
-            const teams = JSON.parse(body).teams;
-            let players = [];
-            teams.forEach((team) => {
-                team.squad.forEach((player) => {
-                    players.push({
-                        name: player.name,
-                        position: player.position,
-                        team: team.name,
-                        appearance: player.appearance,
-                        goal: player.goal,
-                        assist: player.assist
-                    });
-                });
-            });
-            res.json(players);
-        } else {
-            console.log(error);
-        }
-    });
+//   // options for the GET request
+//   const options = {
+//       url: url,
+//       headers: { 'User-Agent': 'request' }
+//   };
+
+//   // make the GET request
+//   request(options, (error, response, body) => {
+//       if (error) {
+//           console.log(error);
+//           res.send(error);
+//       } else {
+//           const players = JSON.parse(body).elements;
+//           res.send(players);
+//       }
+//   });
+// });
+
+app.get("/getplayers", (req, res) => {
+  request.get(
+    {
+      url: "https://fantasy.premierleague.com/api/bootstrap-static/",
+    },
+    (error, response, body) => {
+      const data = JSON.parse(body);
+      const players = data.elements;
+      players.forEach((player) => {
+        const newPlayer = new Player({
+          name: player.first_name + " " + player.second_name,
+          position: player.element_type,
+          team: player.team,
+          goals: player.goals_scored,
+          assists: player.assists,
+          appearances: player.minutes,
+          yellowCards: player.yellow_cards,
+          redCards: player.red_cards,
+          form: player.form,
+          price: player.now_cost,
+          image: player.photo,
+          createdAt: new Date(),
+        });
+        newPlayer.save();
+      });
+      res.json(players)
+    }
+  );
 });
+
+
 
 app.get("/players/:id", async (req, res) => {
   const player = await Player.findById(req.params.id);
@@ -105,7 +127,7 @@ app.get("/players/:id", async (req, res) => {
 });
 
 app.post("/players", async (req, res) => {
-  const csvData = fs.readFileSync()
+  const csvData = fs.readFileSync();
 });
 
 app.put("/players/:id", async (req, res) => {
