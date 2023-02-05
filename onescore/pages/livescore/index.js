@@ -44,11 +44,11 @@ function Index() {
               alt="home team"
             />
             <p className="home-team">{livescore.homeTeam.name}</p>
-            <p className="score-home-ht">
+            {/* <p className="score-home-ht">
               HT {livescore.score.halfTime.home} :
-            </p>
+            </p> */}
             <p className="score-home-ft">
-              FT {livescore.score.fullTime.home} :
+              {livescore.score.fullTime.home} : {livescore.score.fullTime.away}
             </p>
 
             <img
@@ -57,8 +57,8 @@ function Index() {
               alt="away team"
             />
             <p className="away-team">{livescore.awayTeam.name}</p>
-            <p className="score-away-ht">{livescore.score.halfTime.away}</p>
-            <p className="score-away-ft">{livescore.score.fullTime.away}</p>
+            {/* <p className="score-away-ht">{livescore.score.halfTime.away}</p> */}
+            {/* <p className="score-away-ft">{livescore.score.fullTime.away}</p> */}
             <p className="winner">W: {livescore.score.winner}</p>
             <p className="time">{livescore.score.duration}</p>
           </div>
