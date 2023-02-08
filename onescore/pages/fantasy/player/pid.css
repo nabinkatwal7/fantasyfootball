@@ -1,0 +1,99 @@
+.player-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1f1f1f;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.player-img {
+  width: 220px;
+  height: 280px;
+  background: url('https://www.premierleague.com/resources/prod/v6.110.0-4750/i/bg-elements/heading-bg-desktop.svg') center center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation: slideInLeft 1s ease-in-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.player-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+  animation: slideInRight 1s ease-in-out;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.player-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 235%;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 225%;
+    text-align: center;
+    margin: 25px;
+    padding: 25px;
+}
+
+.more-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 225%;
+    margin: 25px;
+    padding: 25px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #e9e9e9;
+  margin-bottom: 10px;
+}
+
+h2,
+h3 {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+  margin-bottom: 10px;
+}
