@@ -6,7 +6,7 @@ function viewPlayers() {
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const res = await fetch("http://localhost:5000/players");
+      const res = await fetch("http://localhost:5000/getPlayers");
       const data = await res.json();
       setPlayers(data);
     };
@@ -16,7 +16,7 @@ function viewPlayers() {
   console.log(players);
 
   return (
-    <div>
+    <div className="viewplayers">
       <div>
         <table>
           <thead>
@@ -30,15 +30,21 @@ function viewPlayers() {
             </tr>
           </thead>
           <tbody>
-            {players.map((player) => {
-              <tr key={player.id}>
-                <td>{player.team}</td>
-                <td>{player.name}</td>
-                <td>{player.position}</td>
-                <td>{player.goals}</td>
-                <td>{player.assists}</td>
-                <td>{player.points}</td>
-              </tr>
+            {players.map((player, index) => {
+              const className =
+                index % 2 === 0 ? "table-row-light" : "table-row-dark";
+              return (
+                <tr key={player.id} className={className}>
+                  <td>{player.team}</td>
+                  <td>
+                    {player.first_name} {player.second_name}
+                  </td>
+                  <td>{player.element_type}</td>
+                  <td>{player.goals_scored}</td>
+                  <td>{player.assists}</td>
+                  <td>{player.total_points}</td>
+                </tr>
+              );
             })}
           </tbody>
         </table>

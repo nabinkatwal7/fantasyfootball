@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); 
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const request = require("request");
@@ -97,23 +97,24 @@ app.get("/getplayers", (req, res) => {
     (error, response, body) => {
       const data = JSON.parse(body);
       const players = data.elements;
-      players.forEach((player) => {
-        const newPlayer = new Player({
-          name: player.first_name + " " + player.second_name,
-          position: player.element_type,
-          team: player.team,
-          goals: player.goals_scored,
-          assists: player.assists,
-          appearances: player.minutes,
-          yellowCards: player.yellow_cards,
-          redCards: player.red_cards,
-          form: player.form,
-          price: player.now_cost,
-          image: player.photo,
-          createdAt: new Date(),
-        });
-        newPlayer.save();
-      });
+      // players.forEach((player) => {
+      //   const newPlayer = new Player({
+      //     name: player.first_name + " " + player.second_name,
+      //     position: player.element_type,
+      //     team: player.team,
+      //     goals: player.goals_scored,
+      //     assists: player.assists,
+      //     appearances: player.minutes,
+      //     yellowCards: player.yellow_cards,
+      //     redCards: player.red_cards,
+      //     form: player.form,
+      //     price: player.now_cost,
+      //     image: player.photo,
+      //     createdAt: new Date(),
+      //   });
+      //   newPlayer.save();
+      // });
+      console.log(players)
       res.json(players)
     }
   );
