@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 function viewPlayers() {
 const [players, setPlayers] = useState([]);
@@ -75,7 +76,9 @@ return (
             return (
               <tr key={player.id} className={className}>
                 <td>
-                  {player.first_name} {player.second_name}
+                  <Link href={'/fantasy/player/'+player.id}>
+                    {player.first_name} {player.second_name}
+                  </Link>
                 </td>
                 <td>{player.goals_scored}</td>
                 <td>{player.element_type}</td>

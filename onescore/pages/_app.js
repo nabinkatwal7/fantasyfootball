@@ -8,6 +8,7 @@ import './fantasy/createTeam.css'
 import './fantasy/viewLeagues.css'
 import './livescore/index.css'
 import './fantasy/viewPlayers.css'
+import './fantasy/player/pid.css'
 
 export default function App({ Component, pageProps }) {
   return (
