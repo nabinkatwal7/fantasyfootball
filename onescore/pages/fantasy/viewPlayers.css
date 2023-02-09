@@ -2,16 +2,18 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin: 1rem 0;
+  border: none;
 }
 
 th {
-    font-size: 17px;
+  font-size: 17px;
   padding: 0.5rem;
+  border: none;
 }
 
 td {
   padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
+  border: none;
   background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -21,4 +23,15 @@ tr:nth-child(even) {
 
 tr:hover {
   background-color: rgba(0, 0, 0, 0.2);
+}
+ 
+
+.player-link{
+  text-decoration: none;
+  color: #fff;
+}
+
+.player-link:hover{
+  cursor: pointer;
+  font-size: 24px;
 }

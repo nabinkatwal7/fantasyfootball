@@ -27,7 +27,7 @@ function index() {
             </Link>
             <Link href="/fantasy/viewTeams" className="nav-link">
               View Teams
-            </Link>
+            </Link> 
             <Link href="/fantasy/viewPlayers" className="nav-link">
               View Players
             </Link>
