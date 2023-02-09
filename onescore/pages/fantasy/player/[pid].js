@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { CleaningServices } from "@mui/icons-material";
 
 function Player() {
   const router = useRouter();
@@ -72,6 +71,7 @@ function Player() {
     let positionMapped = position[positionid]
     return positionMapped
   };
+
 
   return (
     <div className="player-container">
