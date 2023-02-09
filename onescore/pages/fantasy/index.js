@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import ViewDayIcon from "@mui/icons-material/ViewDay";
+import PersonIcon from "@mui/icons-material/Person";
+import Groups3Icon from "@mui/icons-material/Groups3";
+import LogoutIcon from "@mui/icons-material/Logout";
+
 function index() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -19,19 +25,39 @@ function index() {
   return (
     <div className="home-page-container">
       <div className="header">
-        <h1 className="title">Welcome to OneScore Fantasy Football!</h1>
+        {/* <h1 className="title">Welcome to OneScore Fantasy Football!</h1> */}
         {isLoggedIn && (
-          <nav>
-            <Link href="/fantasy/createTeam" className="nav-link">
+          <nav className="fantasy-nav">
+            <Link
+              className="fantasy-links"
+              href="/fantasy/createTeam"
+              className="nav-link"
+            >
+              <AddBoxIcon />
               Create Team
             </Link>
-            <Link href="/fantasy/viewTeams" className="nav-link">
+            <Link
+              className="fantasy-links"
+              href="/fantasy/viewTeams"
+              className="nav-link"
+            >
+              <ViewDayIcon />
               View Teams
-            </Link> 
-            <Link href="/fantasy/viewPlayers" className="nav-link">
+            </Link>
+            <Link
+              className="fantasy-links"
+              href="/fantasy/viewPlayers"
+              className="nav-link"
+            >
+              <PersonIcon />
               View Players
             </Link>
-            <Link href="/fantasy/viewLeagues" className="nav-link">
+            <Link
+              className="fantasy-links"
+              href="/fantasy/viewLeagues"
+              className="nav-link"
+            >
+              <Groups3Icon />
               View Leagues
             </Link>
           </nav>
@@ -42,34 +68,19 @@ function index() {
               Log Out
             </button>
           ) : (
-            <>
+            <div className='auth-actions'>
               <Link href="/fantasy/Login" className="auth-link">
                 Log In
               </Link>
               <Link href="/fantasy/Signup" className="auth-link">
                 Sign Up
               </Link>
-            </>
+            </div>
           )}
         </div>
-        <div className="section-container">
-          <section className="top-players">
-            <h2 className="section-title">Top Players</h2>
-            <ul className="players-list">
-              <li>Lionel Messi</li>
-              <li>Cristiano Ronaldo</li>
-              <li>Neymar Jr</li>
-            </ul>
-          </section>
-          <section className="top-teams">
-            <h2 className="section-title">Top Teams</h2>
-            <ul className="teams-list">
-              <li>Manchester City</li>
-              <li>Liverpool</li>
-              <li>Arsenal</li>
-            </ul>
-          </section>
-        </div>
+      </div>
+      <div className="section-container">
+        
       </div>
     </div>
   );

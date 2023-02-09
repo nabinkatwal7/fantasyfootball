@@ -114,7 +114,6 @@ app.get("/getplayers", (req, res) => {
       //   });
       //   newPlayer.save();
       // });
-      console.log(players)
       res.json(players)
     }
   );
