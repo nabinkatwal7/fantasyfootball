@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { CleaningServices } from "@mui/icons-material";
 
 function Player() {
   const router = useRouter();
@@ -17,10 +18,63 @@ function Player() {
     fetchPlayers();
   }, []);
 
+  const teamMap = (teamid) => {
+    const team = {
+      1: "Arsenal",
+      2: "Aston Villa",
+      3: "Bournemouth",
+      4: "Brentford",
+      5: "Brighton and Hove Albion",
+      6: "Chelsea",
+      7: "Crystal Palace",
+      8: "Everton",
+      9: "Fulham",
+      10: "Leicester City",
+      11: "Leeds United",
+      12: "Liverpool",
+      13: "Manchester City",
+      14: "Manchester United",
+      15: "Newcastle United",
+      16: "Nottingham Forest",
+      17: "Southampton",
+      18: "Tottenham Hotspur",
+      19: "West Ham United",
+      20: "Wolverhampton Wanderers",
+    };
+    let teamNameMapped = team[teamid];
+    return teamNameMapped;
+  };
+
+  const positionMap = (positionid) => {
+    const position = {
+      1: "Arsenal",
+      2: "Aston Villa",
+      3: "Bournemouth",
+      4: "Brentford",
+      5: "Brighton and Hove Albion",
+      6: "Chelsea",
+      7: "Crystal Palace",
+      8: "Everton",
+      9: "Fulham",
+      10: "Leicester City",
+      11: "Leeds United",
+      12: "Liverpool",
+      13: "Manchester City",
+      14: "Manchester United",
+      15: "Newcastle United",
+      16: "Nottingham Forest",
+      17: "Southampton",
+      18: "Tottenham Hotspur",
+      19: "West Ham United",
+      20: "Wolverhampton Wanderers",
+    };
+  };
+
   return (
     <div className="player-container">
       {players.map((player) => {
         if (pid == player.id) {
+          const playerteam = teamMap(player.team);
           return (
             <div key={player.id}>
               <img
@@ -37,7 +91,7 @@ function Player() {
                   <h1>
                     {player.first_name} {player.second_name}
                   </h1>
-                  <h1>{player.team}</h1>
+                  <h1>{playerteam}</h1>
                   <h1>{player.element_type}</h1>
                   <h1>Goals: {player.goals_scored}</h1>
                   <h1>xG: {player.expected_goals}</h1>
