@@ -37,6 +37,7 @@ const createTeam = () => {
   const classes = useStyles();
   const [players, setPlayers] = useState([]);
 <<<<<<< HEAD
+<<<<<<< HEAD
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState(0);
@@ -92,6 +93,22 @@ const createTeam = () => {
     fetchPlayers();
   }, []);
 
+=======
+  const [team, setTeam] = useState([]);
+  const [budget, setBudget] = useState(1000);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function fetchPlayers() {
+      const res = await fetch("http://localhost:5000/createteam");
+      const data = await res.json();
+      setPlayers(data.players);
+    }
+
+    fetchPlayers();
+  }, []);
+
+>>>>>>> parent of c93a18f (createTeam contd)
   const addPlayerToTeam = (player) => {
     if (budget - player.cost >= 0 && team.length < 15) {
       setTeam([...team, player]);
@@ -102,6 +119,9 @@ const createTeam = () => {
   const removePlayerFromTeam = (player) => {
     setTeam(team.filter((p) => p.id !== player.id));
     setBudget(budget + player.cost);
+<<<<<<< HEAD
+>>>>>>> parent of c93a18f (createTeam contd)
+=======
 >>>>>>> parent of c93a18f (createTeam contd)
   };
 
