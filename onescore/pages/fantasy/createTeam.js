@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const createTeam = () => {
   const classes = useStyles();
   const [players, setPlayers] = useState([]);
+<<<<<<< HEAD
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState(0);
@@ -75,12 +76,39 @@ const createTeam = () => {
 
   const handleTeamNameChange = (event) => {
     setTeamName(event.target.value);
+=======
+  const [team, setTeam] = useState([]);
+  const [budget, setBudget] = useState(1000);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function fetchPlayers() {
+      const res = await fetch("http://localhost:5000/createteam");
+      const data = await res.json();
+      setPlayers(data.players);
+    }
+
+    fetchPlayers();
+  }, []);
+
+  const addPlayerToTeam = (player) => {
+    if (budget - player.cost >= 0 && team.length < 15) {
+      setTeam([...team, player]);
+      setBudget(budget - player.cost);
+    }
+  };
+
+  const removePlayerFromTeam = (player) => {
+    setTeam(team.filter((p) => p.id !== player.id));
+    setBudget(budget + player.cost);
+>>>>>>> parent of c93a18f (createTeam contd)
   };
 
   const handlePositionChange = (event) => {
     setPosition(event.target.value);
   }
 
+<<<<<<< HEAD
   
 return (
 
@@ -144,6 +172,32 @@ return (
               <AddCircleOutlineIcon />
             </IconButton>
           </ListItem>
+    if (res.ok) {
+      router.push("/teams");
+    }
+  };
+
+  return (
+    <div>
+      <h1>Create Team</h1>
+      <h2>Available Budget: ${budget}</h2>
+      <h2>Players:</h2>
+      <ul>
+        {players.map((player) => (
+          <li key={player.id}>
+            {player.first_name} {player.second_name} - ${player.now_cost}
+            <button onClick={() => addPlayerToTeam(player)}>Add</button>
+          </li>
+        ))}
+      </ul>
+      <h2>Team:</h2>
+      <ul>
+        {team.map((player) => (
+          <li key={player.id}>
+            {player.first_name} - ${player.now_cost}
+            <button onClick={() => removePlayerFromTeam(player)}>Remove</button>
+          </li>
+>>>>>>> parent of c93a18f (createTeam contd)
         ))}
     </List>
     <div className={classes.team}>
