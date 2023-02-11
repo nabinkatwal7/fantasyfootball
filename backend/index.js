@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const request = require("request");
-const https = require('https')
 
 const Player = require("./models/Player");
 const Team = require("./models/Team");
@@ -141,30 +140,6 @@ app.put("/players/:id", async (req, res) => {
 app.delete("/players/:id", async (req, res) => {
   await Player.findByIdAndRemove(req.params.id);
   res.json({ message: "Player deleted" });
-});
-
-app.get("/createteam", async (req, res) => {
-  try {
-    const response = await https.get(
-      "https://fantasy.premierleague.com/api/bootstrap-static/",
-      (response) => {
-        let data = "";
-        response.on("data", (chunk) => {
-          data += chunk;
-        });
-        response.on("end", () => {
-          const playersData = JSON.parse(data);
-          const gameweekPlayers = playersData.elements.filter(
-            (player) => player.game_week_played === playersData.current_event
-          );
-          res.send({ players: gameweekPlayers });
-        });
-      }
-    );
-  } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Error fetching players" });
-  }
 });
 
 // Define routes for the Team resource
