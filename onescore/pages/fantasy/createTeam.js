@@ -1,44 +1,74 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import fetch from "isomorphic-unfetch";
 
 function createTeam() {
+  const [players, setPlayers] = useState([]);
+  const [team, setTeam] = useState([]);
+  const [budget, setBudget] = useState(1000);
+  const router = useRouter();
+
+  useEffect(() => {
+    async function fetchPlayers() {
+      const res = await fetch("http://localhost:5000/createteam");
+      const data = await res.json();
+      setPlayers(data.players);
+    }
+
+    fetchPlayers();
+  }, []);
+
+  const addPlayerToTeam = (player) => {
+    if (budget - player.cost >= 0 && team.length < 15) {
+      setTeam([...team, player]);
+      setBudget(budget - player.cost);
+    }
+  };
+
+  const removePlayerFromTeam = (player) => {
+    setTeam(team.filter((p) => p.id !== player.id));
+    setBudget(budget + player.cost);
+  };
+
+  const handleConfirmTeam = async () => {
+    const res = await fetch("/saveteam", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ team }),
+    });
+
+    if (res.ok) {
+      router.push("/teams");
+    }
+  };
+
   return (
-    <div className="create-team-container">
-      <div>
-        <h3>Pick Team</h3>
-        <div>
-          <p>You are picking the team for gameweek 22</p>
-        </div>
-        <div>
-          <button>List View</button>
-        </div>
-        <div>
-          <p>Starters</p>
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th></th>
-                <th>Pos</th>
-                <th>GW</th>
-                <th>Goals</th>
-                <th>Assists</th>
-                <th>Points</th>
-              </tr>
-              <tr>
-                <td>Leicester</td>
-                <td>Ward</td>
-                <td>GKP</td>
-                <td>1</td>
-                <td>0</td>
-                <td>0</td>
-                <td>69</td>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div>
+    <div>
+      <h1>Create Team</h1>
+      <h2>Available Budget: ${budget}</h2>
+      <h2>Players:</h2>
+      <ul>
+        {players.map((player) => (
+          <li key={player.id}>
+            {player.first_name} {player.second_name} - ${player.now_cost}
+            <button onClick={() => addPlayerToTeam(player)}>Add</button>
+          </li>
+        ))}
+      </ul>
+      <h2>Team:</h2>
+      <ul>
+        {team.map((player) => (
+          <li key={player.id}>
+            {player.first_name} - ${player.now_cost}
+            <button onClick={() => removePlayerFromTeam(player)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleConfirmTeam}>Confirm Team</button>
     </div>
-  )
+  );
 }
 
-export default createTeam
+export default createTeam;
