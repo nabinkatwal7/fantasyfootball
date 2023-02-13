@@ -105,16 +105,16 @@ function createTeam() {
         <h3>Team Value: 100.0M</h3>
         <h3>Remaining in Bank: 0.0M</h3>
       </div>
-      <div className="pitch container">
+      <div className="pitch-container">
         <SoccerLineUp
           size={"big"}
           color={"green"}
           pattern={"squares"}
-          homeTeam={showHomeTeam?buildHomeTeam():undefined}
-          
+          homeTeam={showHomeTeam ? buildHomeTeam() : undefined}
         />
         <div className="bench">
-          <ol>
+          <h2>Substitutes</h2>
+          <ol className="subs-bench">
             <li>
               <h3>GK SUB</h3>
             </li>
@@ -128,6 +128,9 @@ function createTeam() {
               <h3>ATT SUB</h3>
             </li>
           </ol>
+        </div>
+        <div className="create-team-btns">
+          <button className="btn-98" >Create Team</button>
         </div>
       </div>
     </div>
