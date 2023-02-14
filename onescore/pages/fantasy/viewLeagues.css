@@ -1,12 +1,17 @@
 .view-leagues-container {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #0055a2;
+    margin-top: 85px;
+    background: rgba( 31, 38, 51, 0.4 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 16.5px );
+  -webkit-backdrop-filter: blur( 16.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #fff;
 }
 
 .heading-primary, .heading-secondary {
     text-align: center;
-    color: #0055a2;
+    color: #fff;
 }
 
 .input {
@@ -20,7 +25,7 @@
 
 .button {
     width: 100%;
-    background-color: #0055a2;
+    background-color: #45a29e;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -30,17 +35,17 @@
 }
 
 .button:hover {
-    background-color: #004080;
+    background-color: #1f2833;
 }
 
-.existing-leagues-container {
+.existing-leagues-container li {
     list-style-type: none;
+    text-decoration: none;
     padding: 0;
     margin: 0;
 }
 
 .existing-league {
-    background-color: #f2f2f2;
     padding: 12px;
     margin-bottom: 12px;
     border-radius: 4px;
@@ -49,12 +54,12 @@
 }
 
 .existing-league:hover {
-    background-color: #e6e6e6;
+    background-color: #1f2833;
 }
 
 .create-league-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 24px;
 }
