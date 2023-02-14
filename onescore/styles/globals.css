@@ -1,17 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montez&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body{
-    background-color: #191970;
+    background-color: #0b0c10;
     color: #fff;
     margin-top: 0;
-    font-family: 'Overpass', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* NAVBAR  */
 .navbar{
-    width: 100%;
-    background: url('https://www.premierleague.com/resources/prod/v6.110.0-4750/i/bg-elements/heading-bg-desktop.svg') center center;
-    border-bottom: 1px solid burlywood;
+  width: 100%;
+  /* background: url('https://www.premierleague.com/resources/prod/v6.110.0-4750/i/bg-elements/heading-bg-desktop.svg') center center; */
+  background: rgba( 31, 38, 51, 0.4 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 16.5px );
+  -webkit-backdrop-filter: blur( 16.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+    /* border-bottom: 1px solid burlywood; */
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 5;
+  margin-top: 5px;
+}
+
+.navbar .onescore-logo{
+  font-family: 'Montez', cursive;
+  font-size: 27px;
 }
 
 .navbar ul{
@@ -39,21 +57,26 @@ body{
 
 /* PAGE FOOTER  */
 .footer{
-    background: url('https://www.premierleague.com/resources/prod/v6.110.0-4750/i/bg-elements/heading-bg-desktop.svg') repeat-x center center;
-    border-top: 1px solid burlywood;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    font-size: 14px;
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    /* background: url('https://www.premierleague.com/resources/prod/v6.110.0-4750/i/bg-elements/heading-bg-desktop.svg') repeat-x center center; */
+  background: rgba( 31, 38, 51, 0.4 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 16.5px );
+  -webkit-backdrop-filter: blur( 16.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 10px;
 } 
 
 .footer img{
   width: 30px;
-  background-color: #f4f4f4;
   margin-top: 5px;
   border-radius: 20px;
 }

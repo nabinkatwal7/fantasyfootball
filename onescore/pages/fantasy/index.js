@@ -106,7 +106,7 @@ function index() {
               <AddBoxIcon />
               Create Team
             </Link>
-            <Link
+            <Link 
               className="fantasy-links"
               href="/fantasy/viewTeams"
               className="nav-link"

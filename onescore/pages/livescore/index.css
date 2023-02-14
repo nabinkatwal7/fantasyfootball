@@ -2,8 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #191970;
+  background-color: #0b0c10;
   color: #fafafa;
+  margin-top: 70px;
 }
 
 .matchestoday{
@@ -16,9 +17,12 @@
   height: 200px;
   margin: 20px;
   padding: 20px;
-  background-color: #2b2c2d;
+  background: rgba( 31, 38, 51, 0.4 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 16.5px );
+  -webkit-backdrop-filter: blur( 16.5px );
   border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .country {
@@ -32,7 +36,7 @@
   height: auto;
   margin-right: 10px;
 }
-
+ 
 .country-name {
   font-size: 1.2rem;
   font-weight: bold;

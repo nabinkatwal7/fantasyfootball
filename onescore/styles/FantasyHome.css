@@ -1,6 +1,8 @@
 .home-page-container{
-    margin: 0 0 20px 0;
+    margin-top: 80px;
     display: flex;
+    scroll-behavior: smooth;
+    height: 1080px;
 }
 
 .header{
@@ -24,9 +26,12 @@
     color: #fff;
     display: flex;
     margin-top: 20px;
-    background-color: #2b2c2d;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: rgba( 31, 38, 51, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 16.5px );
+    -webkit-backdrop-filter: blur( 16.5px );
     border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
     align-items: center;
     text-align: center;
     width: 80%;
@@ -62,7 +67,7 @@
 }
 
 .fantasy-nav a:hover{
-    background-color: #f4f4f4;
+    background-color: #c5c6c7;
     color: #2b2c2d;
 }
 
@@ -74,6 +79,5 @@
 .section-container{
     margin: 10px;
     width: 80%;
-    height: 100vh;
+    height: auto;
 }
-

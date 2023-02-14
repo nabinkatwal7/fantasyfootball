@@ -12,7 +12,7 @@ function Index() {
       .then((data) => setLivescores(data))
       .catch((err) => console.log(err));
   }, []);
-
+ 
   return (
     <div className="livescore">
       <h3 className='matchestoday'>Matches today</h3>

@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: auto;
+    margin-top: 80px;
     width: 100%;
     align-items: center;
 }
@@ -24,6 +25,12 @@
 }
 
 .pitch-container{
+  background: rgba( 31, 38, 51, 0.4 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 16.5px );
+  -webkit-backdrop-filter: blur( 16.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
     display: flex;
     padding: 5px;
     justify-content: space-between;

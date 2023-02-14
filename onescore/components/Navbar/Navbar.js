@@ -8,6 +8,7 @@ function Navbar() {
   return (
     <div className="navbar">
       <ul>
+        <li className="onescore-logo" >OneScore</li>
         <li>
           <Link href="/">
             <SportsSoccerIcon />

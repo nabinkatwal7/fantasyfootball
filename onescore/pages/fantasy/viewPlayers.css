@@ -1,11 +1,27 @@
+.viewplayers{
+  margin-top: 85px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
   margin: 1rem 0;
   border: none;
+  background: rgba( 31, 38, 51, 0.4 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 16.5px );
+  -webkit-backdrop-filter: blur( 16.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 th {
+  background: rgba( 31, 38, 51, 0.4 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 16.5px );
+-webkit-backdrop-filter: blur( 16.5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
   font-size: 17px;
   padding: 0.5rem;
   border: none;
@@ -14,11 +30,11 @@ th {
 td {
   padding: 0.5rem;
   border: none;
-  background-color: rgba(0, 0, 0, 0.05);
+  background: rgba( 31, 38, 51, 0.4 );
 }
 
 tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.1);
+  background: rgba( 11, 12, 16, 0.4 );
 }
 
 tr:hover {
