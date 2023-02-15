@@ -6,7 +6,7 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import ViewDayIcon from "@mui/icons-material/ViewDay";
 import PersonIcon from "@mui/icons-material/Person";
 import Groups3Icon from "@mui/icons-material/Groups3";
-import LogoutIcon from "@mui/icons-material/Logout";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 function index() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -102,6 +102,14 @@ function index() {
               href="/fantasy/createTeam"
               className="nav-link"
             >
+              <AccountBoxIcon />
+              Profile
+            </Link>
+            <Link
+              className="fantasy-links"
+              href="/fantasy/createTeam"
+              className="nav-link"
+            >
               <AddBoxIcon />
               Create Team
             </Link>
@@ -111,7 +119,7 @@ function index() {
               className="nav-link"
             >
               <ViewDayIcon />
-              View Teams
+              View Team
             </Link>
             <Link
               className="fantasy-links"

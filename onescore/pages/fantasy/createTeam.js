@@ -108,7 +108,7 @@ function createTeam() {
       <div className="pitch-container">
         <SoccerLineUp
           size={"big"}
-          color={"green"}
+          color={"#567d46"}
           pattern={"squares"}
           homeTeam={showHomeTeam ? buildHomeTeam() : undefined}
         />
@@ -130,7 +130,7 @@ function createTeam() {
           </ol>
         </div>
         <div className="create-team-btns">
-          <button className="btn-98" >Create Team</button>
+          <button className="btn-98">Create Team</button>
         </div>
       </div>
     </div>

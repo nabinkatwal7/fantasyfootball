@@ -3,7 +3,7 @@ import React from 'react'
 function viewTeams() {
   return (
     <div>
-      viewTeams
+      viewTeam
     </div>
   )
 }
