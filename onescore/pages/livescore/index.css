@@ -14,7 +14,7 @@
 
 .livescorecard {
   width: 90%;
-  height: 200px;
+  height: 230px;
   margin: 20px;
   padding: 20px;
   background: rgba( 31, 38, 51, 0.4 );
@@ -29,6 +29,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  justify-content: space-between;
 }
 
 .country-flag {
@@ -118,3 +119,7 @@
   font-weight: bold;
   margin-right: 10px;
 }
+
+/* .country .time{
+  width: 100%;
+} */

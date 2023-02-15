@@ -12,10 +12,15 @@ function Index() {
       .then((data) => setLivescores(data))
       .catch((err) => console.log(err));
   }, []);
+
+  function dateTime(utcDate){
+    var localDate = new Date(utcDate).toString()
+    return localDate.slice(0,28)
+  }
  
   return (
     <div className="livescore">
-      <h3 className='matchestoday'>Matches today</h3>
+      <h3 className="matchestoday">Matches today</h3>
       {livescores.map((livescore) => (
         <div key={livescore.index} className="livescorecard">
           <div className="country">
@@ -25,6 +30,9 @@ function Index() {
               alt="country flag"
             />
             <p className="country-name">{livescore.area.name}</p>
+            <div className="time">
+              <p>{dateTime(livescore.utcDate)}</p>
+            </div>
           </div>
           <div className="league">
             <img
