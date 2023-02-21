@@ -4,7 +4,12 @@ import SoccerLineUp from "react-soccer-lineup";
 function createTeam() {
   const homeTeamClickable = true;
   let totalCost = 0;
+  const [isOpen, setIsOpen] = useState(false)
   const [playerData, setPlayerData] = useState(null);
+
+  const togglePopUp = () =>{
+    setIsOpen(!isOpen)
+  }
 
   useEffect(() => {
     async function fetchPlayerData() {
@@ -31,10 +36,20 @@ function createTeam() {
             number: player.now_cost / 10,
             name: player.web_name,
             onClick: homeTeamClickable
-              ? () => alert(`${player.web_name}`)
+              ? () => togglePopUp()
               : undefined,
           });
-          totalCost = totalCost+player.now_cost/10
+          isOpen && (
+            <div className="popupbox">
+              <div className="box">
+                <span className="close-icon" onClick={togglePopUp}>
+                  x
+                </span>
+                <h1>Replace Player</h1>
+              </div>
+            </div>
+          );
+          totalCost += player.now_cost/10
           break;
         case 2:
           if(defenders.length>3){
@@ -44,10 +59,10 @@ function createTeam() {
               number: player.now_cost / 10,
               name: player.web_name,
               onClick: homeTeamClickable
-                ? () => alert(`${player.web_name}`)
+                ? () => togglePopUp()
                 : undefined,
             });
-            totalCost = totalCost + player.now_cost / 10;
+            totalCost += player.now_cost / 10;
           }
           break;
         case 3:
@@ -57,9 +72,7 @@ function createTeam() {
             midfielders.push({
               number: player.now_cost / 10,
               name: player.web_name,
-              onClick: homeTeamClickable
-                ? () => alert(` ${player.web_name}`)
-                : undefined,
+              onClick: homeTeamClickable ? () => togglePopUp() : undefined,
             });
             totalCost = totalCost + player.now_cost / 10;
           }
@@ -71,9 +84,7 @@ function createTeam() {
             forwards.push({
               number: player.now_cost / 10,
               name: player.web_name,
-              onClick: homeTeamClickable
-                ? () => alert(`${player.web_name}`)
-                : undefined,
+              onClick: homeTeamClickable ? () => togglePopUp() : undefined,
             });
             totalCost = totalCost + player.now_cost / 10;
           }
@@ -138,6 +149,16 @@ function createTeam() {
         <div className="create-team-btns">
           <button className="btn-98">Create Team</button>
         </div>
+        {isOpen && (
+          <div className="popupbox">
+            <div className="box">
+              <span className="close-icon" onClick={togglePopUp}>
+                x
+              </span>
+              <h3>Replace Player</h3>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
