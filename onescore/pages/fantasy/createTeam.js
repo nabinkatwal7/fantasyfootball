@@ -2,116 +2,122 @@ import React, { useState, useEffect } from "react";
 import SoccerLineUp from "react-soccer-lineup";
 
 function createTeam() {
-  const homeTeamColor = "050101";
-  const homeTeamNumberColor = "ffffff";
-  const homeGoalkeeperColor = "ffffff";
-  const homeGoalkeeperNumberColor = '050101';
-  const showHomeTeam = true
-  const homeTeamClickable= true
+  const homeTeamClickable = true;
+  let totalCost = 0;
+  const [playerData, setPlayerData] = useState(null);
 
-  const buildHomeTeam = () => {
+  useEffect(() => {
+    async function fetchPlayerData() {
+      const response = await fetch(
+        "https://fantasy.premierleague.com/api/bootstrap-static/"
+      );
+      const data = await response.json();
+      setPlayerData(data.elements);
+    }
+    fetchPlayerData();
+  }, []);
+
+  function mapPlayerDataToPositions(playerData) {
+    const goalkeeper = [];
+    const defenders = [];
+    const midfielders = [];
+    const forwards = [];
+
+    playerData.map((player) => {
+      console.log(player)
+      switch (player.element_type) {
+        case 1:
+          goalkeeper.push({
+            number: player.now_cost / 10,
+            name: player.web_name,
+            onClick: homeTeamClickable
+              ? () => alert(`${player.web_name}`)
+              : undefined,
+          });
+          totalCost = totalCost+player.now_cost/10
+          break;
+        case 2:
+          if(defenders.length>3){
+            break
+          }else{
+            defenders.push({
+              number: player.now_cost / 10,
+              name: player.web_name,
+              onClick: homeTeamClickable
+                ? () => alert(`${player.web_name}`)
+                : undefined,
+            });
+            totalCost = totalCost + player.now_cost / 10;
+          }
+          break;
+        case 3:
+          if(midfielders.length>2){
+            break
+          }else{
+            midfielders.push({
+              number: player.now_cost / 10,
+              name: player.web_name,
+              onClick: homeTeamClickable
+                ? () => alert(` ${player.web_name}`)
+                : undefined,
+            });
+            totalCost = totalCost + player.now_cost / 10;
+          }
+          break;
+        case 4:
+          if(forwards.length>2){
+            break;
+          }else{
+            forwards.push({
+              number: player.now_cost / 10,
+              name: player.web_name,
+              onClick: homeTeamClickable
+                ? () => alert(`${player.web_name}`)
+                : undefined,
+            });
+            totalCost = totalCost + player.now_cost / 10;
+          }
+          break;
+        default:
+          break;
+      }
+    });
     return {
       squad: {
-        gk: {
-          number: 1,
-          name: 'De Gea',
-          color: `#${homeGoalkeeperColor}`,
-          numberColor: `#${homeGoalkeeperNumberColor}`,
-          onClick: homeTeamClickable
-            ? () => alert(`Home team - Player ${1}`)
-            : undefined,
-        },
-        df: [
-          {
-            number: 2,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${2}`)
-              : undefined,
-          },
-          {
-            number: 4,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${4}`)
-              : undefined,
-          },
-          {
-            number: 5,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${5}`)
-              : undefined,
-          },
-          {
-            number: 3,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${3}`)
-              : undefined,
-          },
-        ],
-        cm: [
-          {
-            number: 6,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${6}`)
-              : undefined,
-          },
-          {
-            number: 8,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${8}`)
-              : undefined,
-          },
-        ],
-        cam: [
-          {
-            number: 11,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${11}`)
-              : undefined,
-          },
-          {
-            number: 10,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${10}`)
-              : undefined,
-          },
-          {
-            number: 7,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${7}`)
-              : undefined,
-          },
-        ],
-        fw: [
-          {
-            number: 9,
-            onClick: homeTeamClickable
-              ? () => alert(`Home team - Player ${9}`)
-              : undefined,
-          },
-        ],
-      },
-      style: {
-        color: `#${homeTeamColor}`,
-        numberColor: `#${homeTeamNumberColor}`,
+        gk: goalkeeper[0],
+        df: defenders,
+        cm: midfielders,
+        fw: forwards,
       },
     };
-  };
+  }
 
   return (
     <div className="createteam-container">
       <div className="teaminfo">
         <h1>Football FC</h1>
         <h3>username</h3>
-        <h3>Team Value: 100.0M</h3>
+        <h3>Team Value: {totalCost}M</h3>
         <h3>Remaining in Bank: 0.0M</h3>
       </div>
       <div className="pitch-container">
-        <SoccerLineUp
+        {playerData ? (
+          <SoccerLineUp
+            size={"big"}
+            color={"#567d46"}
+            pattern={"squares"}
+            homeTeam={mapPlayerDataToPositions(playerData)}
+          />
+        ) : (
+          <p>Loading player data...</p>
+        )}
+        {/* <SoccerLineUp
           size={"big"}
           color={"#567d46"}
           pattern={"squares"}
+          // homeTeam={mapPlayerDataToPositions(playerData)}
           homeTeam={showHomeTeam ? buildHomeTeam() : undefined}
-        />
+        /> */}
         <div className="bench">
           <h2>Substitutes</h2>
           <ol className="subs-bench">
