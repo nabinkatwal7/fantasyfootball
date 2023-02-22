@@ -29,7 +29,9 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         localStorage.setItem("token", data.token);
+        localStorage.setItem('username', data.username)
         setRedirect(true);
       })
       .catch((err) => {
