@@ -9,7 +9,7 @@ import Groups3Icon from "@mui/icons-material/Groups3";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 function index() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -136,26 +136,41 @@ function index() {
               <Groups3Icon />
               View Leagues
             </Link>
+            {/* <div className="auth-actions">
+              {isLoggedIn ? (
+                <button className="auth-link" onClick={handleLogout}>
+                  Log Out
+                </button>
+              ) : (
+                <div className="auth-actions">
+                  <Link href="/fantasy/Login" className="auth-link">
+                    Log In
+                  </Link>
+                  <Link href="/fantasy/Signup" className="auth-link">
+                    Sign Up
+                  </Link>
+                </div>
+              )}
+            </div> */}
           </nav>
         )}
-        <div className="auth-actions">
-          {isLoggedIn ? (
-            <button className="auth-link" onClick={handleLogout}>
-              Log Out
-            </button>
-          ) : (
-            <div className="auth-actions">
-              <Link href="/fantasy/Login" className="auth-link">
-                Log In
-              </Link>
-              <Link href="/fantasy/Signup" className="auth-link">
-                Sign Up
-              </Link>
-            </div>
-          )}
-        </div>
       </div>
-
+      <div className="auth-actions">
+        {isLoggedIn ? (
+          <button className="auth-link" onClick={handleLogout}>
+            Log Out
+          </button>
+        ) : (
+          <div className="auth-actions">
+            <Link href="/fantasy/Login" className="auth-link">
+              Log In
+            </Link>
+            <Link href="/fantasy/Signup" className="auth-link">
+              Sign Up
+            </Link>
+          </div>
+        )}
+      </div>
       <div className="section-container">
         {players.map((player) => {
           if (pid == player.id) {
