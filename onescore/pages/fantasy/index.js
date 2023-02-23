@@ -9,7 +9,7 @@ import Groups3Icon from "@mui/icons-material/Groups3";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 function index() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -62,7 +62,6 @@ function index() {
   };
 
   const positionMap = (positionid) => {
-    console.log(positionid);
     const position = {
       1: "Goalkeeper",
       2: "Defender",
