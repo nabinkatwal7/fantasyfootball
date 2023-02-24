@@ -25,9 +25,9 @@ const pointCalculator = (playerStats) => {
   if (playerStats.rating >= 8.0) {
     points += 5;
   }
+
   return points;
 };
-
 
 function calculateICTThreatIndex(shotsOnTarget, keyPasses, dribblesCompleted) {
   const ICTIndex =
