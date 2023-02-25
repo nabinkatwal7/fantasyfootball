@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
+
+import Clock from "react-live-clock";
+
+import Card from "react-bootstrap/Card";
 
 function Index() {
   const [livescores, setLivescores] = useState([]);
@@ -20,60 +22,43 @@ function Index() {
  
   return (
     <div className="livescore">
-      <h3 className="matchestoday">Matches today</h3>
+      <Clock/>
+      <h3 className="matchestoday">Matches today:</h3>
       {livescores.map((livescore) => (
-        <div key={livescore.index} className="livescorecard">
-          <div className="country">
-            <img
-              className="country-flag"
-              src={livescore.area.flag}
-              alt="country flag"
-            />
-            <p className="country-name">{livescore.area.name}</p>
-            <div className="time">
-              <p>{dateTime(livescore.utcDate)}</p>
-            </div>
-          </div>
-          <div className="league">
-            <img
-              className="league-logo"
-              src={livescore.competition.emblem}
-              alt="league-logo"
-            />
-            <p className="league">{livescore.competition.name}</p>
-            <p className="current-matchday">
-              Matchday: {livescore.season.currentMatchday}
-            </p>
-          </div>
-          <div className="score">
-            <img
-              className="home-team-img"
-              src={livescore.homeTeam.crest}
-              alt="home team"
-            />
-            <p className="home-team">{livescore.homeTeam.name}</p>
-            {/* <p className="score-home-ht">
-              HT {livescore.score.halfTime.home} :
-            </p> */}
-            <p className="score-home-ft">
-              {livescore.score.fullTime.home} : {livescore.score.fullTime.away}
-            </p>
-
-            <img
-              className="away-team-img"
-              src={livescore.awayTeam.crest}
-              alt="away team"
-            />
-            <p className="away-team">{livescore.awayTeam.name}</p>
-            {/* <p className="score-away-ht">{livescore.score.halfTime.away}</p> */}
-            {/* <p className="score-away-ft">{livescore.score.fullTime.away}</p> */}
-            <p className="winner">W: {livescore.score.winner}</p>
-            <p className="time">{livescore.score.duration}</p>
-          </div>
-          <div className="referee">
-            <p className="referee-name">{livescore.referees.name}</p>
-            <p>{livescore.referees.nationality}</p>
-          </div>
+        <div key={livescore.index} className="livescorecard ">
+          <Card style={{ width: "22rem", height: "42rem" }}>
+            <Card.Img variant="top" src={livescore.competition.emblem} />
+            <Card.Body>
+              <b>{livescore.area.name}</b>
+              <Card.Title>{livescore.competition.name}</Card.Title>
+              <Card.Text>
+                <div className="score">
+                  <div className="home-team">
+                    <p>{livescore.homeTeam.name}</p>
+                    <img
+                      className="home-team-img"
+                      src={livescore.homeTeam.crest}
+                      alt="home team"
+                    />
+                    {livescore.score.fullTime.home}-
+                  </div>
+                  <div className="away-team">
+                    {livescore.score.fullTime.away}
+                    <img
+                      className="away-team-img"
+                      src={livescore.awayTeam.crest}
+                      alt="away team"
+                    />
+                    <p>{livescore.awayTeam.name}</p>
+                  </div>
+                </div>
+                <p>{dateTime(livescore.utcDate)}</p>
+                <p>Matchday: {livescore.season.currentMatchday}</p>
+                <p className="winner">W: {livescore.score.winner}</p>
+                <p className="time">{livescore.score.duration}</p>
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
       ))}
     </div>

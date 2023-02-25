@@ -1,126 +1,42 @@
 .livescore {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  background-color: #0b0c10;
-  color: #fafafa;
+  justify-content: space-around;
   margin-top: 75px;
 }
 
+.livescorecard{
+  margin-left: 5px;
+  margin-top: 15px;
+}
+
 .matchestoday{
-  font-size: 30px;
-  color: #fff;
-}
-
-.livescorecard {
-  width: 90%;
-  height: 230px;
-  margin: 20px;
-  padding: 20px;
-  background: rgba( 31, 38, 51, 0.4 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 16.5px );
-  -webkit-backdrop-filter: blur( 16.5px );
-  border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
-}
-
-.country {
-  display: flex;
+  width: 100%;
   align-items: center;
-  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+  font-size: 28px;
+}
+
+.score{
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score .home-team,.away-team{
+  display: flex;
   justify-content: space-between;
 }
 
-.country-flag {
+.score .home-team-img, .away-team-img{
+  padding: 5px;
   width: 50px;
-  height: auto;
-  margin-right: 10px;
-}
- 
-.country-name {
-  font-size: 1.2rem;
-  font-weight: bold;
+  height: 45px;
 }
 
-.league {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+.score p{
+  font-size: 16px;
 }
-
-.league-logo {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
-  background-color: #f4f4f4;
-  border-radius: 7px;
-  padding: 2px;
-}
-
-.league {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.current-matchday {
-  font-size: 1rem;
-  margin-left: auto;
-}
-
-.score {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.home-team-img,
-.away-team-img {
-  width: 50px;
-  height: auto;
-  margin-right: 10px;
-}
-
-.home-team,
-.away-team {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.score-home-ht,
-.score-home-ft,
-.score-away-ht,
-.score-away-ft {
-  width: 60px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.winner {
-  font-size: 1rem;
-  margin-left: auto;
-}
-
-.time {
-  font-size: 1rem;
-  margin-left: auto;
-}
-
-.referee {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.referee-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-/* .country .time{
-  width: 100%;
-} */

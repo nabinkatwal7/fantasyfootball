@@ -17,7 +17,7 @@ function Navbar() {
             <SportsSoccerIcon />
             OneScore
           </Navba.Brand>
-          <Nav className="me-auto navbar navbar-dark bg-primary">
+          <Nav className="navbarr me-auto navbar navbar-dark bg-primary">
             <Nav.Link href="/">Live Score</Nav.Link>
             <Nav.Link href="/fantasy">Fantasy</Nav.Link>
           </Nav>
