@@ -24,7 +24,6 @@
   label {
     display: block;
     font-size: 18px;
-    color: #fff;
   }
   
   input {
@@ -54,12 +53,6 @@
     background-color: #003559;
   }
 
-  .account-info {
-    text-align: center;
-    font-size: 14px;
-    margin-top: 10px;
-    color: #777;
-  }
   
   .signup-link {
     color: #005792;
