@@ -44,9 +44,9 @@ function Signup() {
       });
       const data = await response.json();
       if (data.error) {
-        alert(data.error);
+        console.log(data.error);
       } else {
-        alert("Successfully registered");
+        console.log("Successfully registered");
       }
       if (response.ok) {
         setStatus("success");
