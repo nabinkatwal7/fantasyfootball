@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+import Table from 'react-bootstrap/Table'
+
 function viewPlayers() {
 const [players, setPlayers] = useState([]);
 const [displayedPlayers, setDisplayedPlayers] = useState([]);
@@ -103,7 +105,6 @@ const positionMap = (positionid) => {
 };
 
 return (
-
   <div className="viewplayers">
     <div className="search-container">
       <input
@@ -113,7 +114,7 @@ return (
       />
     </div>
     <div>
-      <table>
+      <Table striped hover variant="dark">
         <thead>
           <tr>
             <th onClick={sortByName}>Player Name</th>
@@ -126,14 +127,15 @@ return (
         </thead>
         <tbody>
           {displayedPlayers.map((player, index) => {
-            const playerteam = teamMap(player.team)
-            const playerPostion = positionMap(player.element_type)
-            const className =
-              index % 2 === 0 ? "table-row-light" : "table-row-dark";
+            const playerteam = teamMap(player.team);
+            const playerPostion = positionMap(player.element_type);
             return (
-              <tr key={player.id} className={className}>
+              <tr key={player.id}>
                 <td>
-                  <Link className="player-link" href={'/fantasy/player/'+player.id}>
+                  <Link
+                    className="player-link"
+                    href={"/fantasy/player/" + player.id}
+                  >
                     {player.first_name} {player.second_name}
                   </Link>
                 </td>
@@ -146,7 +148,7 @@ return (
             );
           })}
         </tbody>
-      </table>
+      </Table>
     </div>
   </div>
 );

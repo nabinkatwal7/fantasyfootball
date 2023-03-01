@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
 
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
 function createTeam() {
   const [players, setPlayers] = useState([]);
   const [username, setUsername] = useState([]);
@@ -11,6 +18,7 @@ function createTeam() {
     SUBS: [],
   });
   let selectedPlayer = {};
+  const [teamName, setTeamName] = useState()
 
   useEffect(() => {
     const name = localStorage.getItem("username");
@@ -77,6 +85,11 @@ function createTeam() {
 
   return (
     <div className="createteam-container">
+      <Container>
+        <Row>
+
+        </Row>
+      </Container>
       {/* GOALKEEPER */}
       <div className="pitch-container">
         <h1>Pick your team</h1>

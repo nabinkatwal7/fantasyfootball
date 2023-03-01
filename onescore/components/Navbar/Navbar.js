@@ -6,7 +6,6 @@ import Nav from 'react-bootstrap/Nav';
 import Navba from 'react-bootstrap/Navbar';
 
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
-import NfcIcon from "@mui/icons-material/Nfc";
 
 function Navbar() {
   return (

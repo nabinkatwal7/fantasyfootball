@@ -2,6 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 function Player() {
   const router = useRouter();
   const { pid } = router.query;
@@ -45,7 +50,7 @@ function Player() {
   };
 
   const positionMap = (positionid) => {
-    console.log(positionid)
+    console.log(positionid);
     const position = {
       1: "Goalkeeper",
       2: "Defender",
@@ -68,59 +73,75 @@ function Player() {
       19: "Forward(Starting)",
       20: "Forward(Secondary, Starting)",
     };
-    let positionMapped = position[positionid]
-    return positionMapped
+    let positionMapped = position[positionid];
+    return positionMapped;
   };
-
 
   return (
     <div className="player-container">
       {players.map((player) => {
         if (pid == player.id) {
           const playerteam = teamMap(player.team);
-          const playerPosition = positionMap(player.element_type)
+          const playerPosition = positionMap(player.element_type);
           return (
-            <div key={player.id}>
-              <img
-                className="player-img"
+            <Card key={player.id} style={{ width: "28rem" }}>
+              <Card.Title>
+                <b>
+                  {player.first_name} {player.second_name}
+                </b>
+              </Card.Title>
+              <Card.Img
+              className="player-img"
+                variant="top"
                 src={
                   "https://resources.premierleague.com/premierleague/photos/players/110x140/p" +
                   player.code +
                   ".png"
                 }
-                alt="player image"
               />
-              <div className="player-details">
-                <div className="player-detail">
-                  <h1>
-                    {player.first_name} {player.second_name}
-                  </h1>
-                  <h1>{playerteam}</h1>
-                  <h1>{playerPosition}</h1>
-                  <h1>Goals: {player.goals_scored}</h1>
-                  <h1>xG: {player.expected_goals}</h1>
-                  <h1>Assists: {player.assists}</h1>
-                  <h1>xA: {player.expected_assists}</h1>
-                </div>
-                <div className="stats">
-                  <h3>Minutes Played: {player.minutes}</h3>
-                  <h3>Clean Sheets: {player.clean_sheets}</h3>
-                  <h3>Cost: ${player.now_cost / 10}M</h3>
-                  <h3>Cost Rank: {player.now_cost_rank_type}</h3>
-                  <h3>ICT Index: {player.ict_index}</h3>
-                  <h3>Transfers In: {player.transfers_in}</h3>
-                  <h3>Transfers Out: {player.transfers_out}</h3>
-                </div>
-                <div className="more-stats">
-                  <h3>Penalties Missed: {player.penalties_missed}</h3>
-                  <h3>Points Per Game: {player.points_per_game}</h3>
-                  <h3>Starts Per 90: {player.starts_per_90}</h3>
-                  <h3>Yellow Cards: {player.yellow_cards}</h3>
-                  <h3>Red Cards: {player.red_cards}</h3>
-                  <h3>Threats: {player.threat}</h3>
-                </div>
-              </div>
-            </div>
+              <Card.Body>
+                <Card.Title>{playerteam}</Card.Title>
+                <Container>
+                  <Row>
+                    <Col>
+                      <Card.Text></Card.Text>
+                      <Card.Text>{playerPosition}</Card.Text>
+                      <Card.Text>Goals: {player.goals_scored}</Card.Text>
+                      <Card.Text>xG: {player.expected_goals}</Card.Text>
+                      <Card.Text>Assists: {player.assists}</Card.Text>
+                      <Card.Text>xA: {player.expected_assists}</Card.Text>
+                    </Col>
+                    <Col>
+                      <Card.Text>Minutes Played: {player.minutes}</Card.Text>
+                      <Card.Text>Clean Sheets: {player.clean_sheets}</Card.Text>
+                      <Card.Text>Cost: ${player.now_cost / 10}M</Card.Text>
+                      <Card.Text>
+                        Cost Rank: {player.now_cost_rank_type}
+                      </Card.Text>
+                      <Card.Text>ICT Index: {player.ict_index}</Card.Text>
+                      <Card.Text>Transfers In: {player.transfers_in}</Card.Text>
+                      <Card.Text>
+                        Transfers Out: {player.transfers_out}
+                      </Card.Text>
+                    </Col>
+                    <Col>
+                      <Card.Text>
+                        Penalties Missed: {player.penalties_missed}
+                      </Card.Text>
+                      <Card.Text>
+                        Points Per Game: {player.points_per_game}
+                      </Card.Text>
+                      <Card.Text>
+                        Starts Per 90: {player.starts_per_90}
+                      </Card.Text>
+                      <Card.Text>Yellow Cards: {player.yellow_cards}</Card.Text>
+                      <Card.Text>Red Cards: {player.red_cards}</Card.Text>
+                      <Card.Text>Threat: {player.threat}</Card.Text>
+                    </Col>
+                  </Row>
+                </Container>
+              </Card.Body>
+            </Card>
           );
         }
       })}
