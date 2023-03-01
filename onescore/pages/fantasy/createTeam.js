@@ -19,6 +19,7 @@ function createTeam() {
   });
   let selectedPlayer = {};
   const [teamName, setTeamName] = useState()
+  const [hasTeamName, setHasTeamName] = useState(false)
 
   useEffect(() => {
     const name = localStorage.getItem("username");
@@ -70,6 +71,15 @@ function createTeam() {
     fetchPlayers();
   }, []);
 
+   const handleNameChange = (event) => {
+     setTeamName(event.target.value);
+   };
+
+  function handleTeamName(event){
+    event.preventDefault()
+    setHasTeamName(true)
+  }
+
   function createTeamData(team) {
     players.map((player) => {
       if(team.GK == player.id){
@@ -87,180 +97,290 @@ function createTeam() {
     <div className="createteam-container">
       <Container>
         <Row>
+          <Col className="text-center">
+            {hasTeamName ? (
+              <h3>{teamName}</h3>
+            ) : (
+              <Form>
+                <Form.Control
+                  type="text"
+                  value={teamName}
+                  onChange={handleNameChange}
+                  placeholder="Enter Team Name"
+                />
+                <Button
+                  onClick={handleTeamName}
+                  className="btn btn-secondary btn-sm"
+                >
+                  Set
+                </Button>
+              </Form>
+            )}
+          </Col>
+          <Col>
+            <h3>Username</h3>
+          </Col>
+          <Col>
+            <h3>Bank: 100.0M</h3>
+          </Col>
+        </Row>
+        <Row className="p-5 mt-2">
+          <Row className="text-center">
+            <Col>
+              <h4>Starting XI. Formation: 4-3-3</h4>
+            </Col>
+          </Row>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("GK", e.target.value)}
+            >
+              <option>Select a goalkeeper</option>
+              {players
+                .filter((p) => p.element_type === 1)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+        </Row>
 
+        <Row className="p-5 mt-2">
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("DEF", e.target.value)}
+            >
+              <option>Select a defender</option>
+              {players
+                .filter((p) => p.element_type === 2)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("DEF", e.target.value)}
+            >
+              <option>Select a defender</option>
+              {players
+                .filter((p) => p.element_type === 2)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("DEF", e.target.value)}
+            >
+              <option>Select a defender</option>
+              {players
+                .filter((p) => p.element_type === 2)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("DEF", e.target.value)}
+            >
+              <option>Select a defender</option>
+              {players
+                .filter((p) => p.element_type === 2)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+        </Row>
+
+        <Row className="p-5 mt-2">
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("MID", e.target.value)}
+            >
+              <option>Select a midfielder</option>
+              {players
+                .filter((p) => p.element_type === 3)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("MID", e.target.value)}
+            >
+              <option>Select a midfielder</option>
+              {players
+                .filter((p) => p.element_type === 3)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("MID", e.target.value)}
+            >
+              <option>Select a midfielder</option>
+              {players
+                .filter((p) => p.element_type === 3)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+        </Row>
+
+        <Row className="p-5 mt-2">
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("FWD", e.target.value)}
+            >
+              <option>Select a forward</option>
+              {players
+                .filter((p) => p.element_type === 4)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("FWD", e.target.value)}
+            >
+              <option>Select a forward</option>
+              {players
+                .filter((p) => p.element_type === 4)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("FWD", e.target.value)}
+            >
+              <option>Select a forward</option>
+              {players
+                .filter((p) => p.element_type === 4)
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+        </Row>
+
+        <Row className="p-5 mt-2">
+          <Row className="text-center">
+            <Col>
+              <h4>Subsitutes</h4>
+            </Col>
+          </Row>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("SUB", e.target.value)}
+            >
+              <option>Select a substitute</option>
+              {players
+                .filter((p) => p.element_type === 1) // Exclude goalkeepers
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("SUB", e.target.value)}
+            >
+              <option>Select a substitute</option>
+              {players
+                .filter((p) => p.element_type === 1) // Exclude goalkeepers
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("SUB", e.target.value)}
+            >
+              <option>Select a substitute</option>
+              {players
+                .filter((p) => p.element_type === 1) // Exclude goalkeepers
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+          <Col>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => handlePositionChange("SUB", e.target.value)}
+            >
+              <option>Select a substitute</option>
+              {players
+                .filter((p) => p.element_type === 1) // Exclude goalkeepers
+                .map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.web_name} ({p.now_cost / 10})
+                  </option>
+                ))}
+            </Form.Select>
+          </Col>
+        </Row>
+        <Row className="p-5 mt-2">
+          <Col className="text-center">
+            <Button type="submit" onClick={handleSubmit}>
+              Create Team
+            </Button>
+          </Col>
         </Row>
       </Container>
-      {/* GOALKEEPER */}
-      <div className="pitch-container">
-        <h1>Pick your team</h1>
-        <p>{username}</p>
-        <h2>Goalkeeper</h2>
-        <select onChange={(e) => handlePositionChange("GK", e.target.value)}>
-          <option>Select a goalkeeper</option>
-          {players
-            .filter((p) => p.element_type === 1)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-
-        {/* DEFENDERS */}
-        <h2>Defenders</h2>
-        <select onChange={(e) => handlePositionChange("DEF", e.target.value)}>
-          <option>Select a defender</option>
-          {players
-            .filter((p) => p.element_type === 2)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("DEF", e.target.value)}>
-          <option>Select a defender</option>
-          {players
-            .filter((p) => p.element_type === 2)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("DEF", e.target.value)}>
-          <option>Select a defender</option>
-          {players
-            .filter((p) => p.element_type === 2)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("DEF", e.target.value)}>
-          <option>Select a defender</option>
-          {players
-            .filter((p) => p.element_type === 2)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-
-        {/* MIDFIELDERS */}
-        <h2>Midfielders</h2>
-        <select onChange={(e) => handlePositionChange("MID", e.target.value)}>
-          <option>Select a midfielder</option>
-          {players
-            .filter((p) => p.element_type === 3)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("MID", e.target.value)}>
-          <option>Select a midfielder</option>
-          {players
-            .filter((p) => p.element_type === 3)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("MID", e.target.value)}>
-          <option>Select a midfielder</option>
-          {players
-            .filter((p) => p.element_type === 3)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-
-        {/* FORWARDS */}
-        <h2>Forwards</h2>
-        <select onChange={(e) => handlePositionChange("FWD", e.target.value)}>
-          <option>Select a forward</option>
-          {players
-            .filter((p) => p.element_type === 4)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("FWD", e.target.value)}>
-          <option>Select a forward</option>
-          {players
-            .filter((p) => p.element_type === 4)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("FWD", e.target.value)}>
-          <option>Select a forward</option>
-          {players
-            .filter((p) => p.element_type === 4)
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-
-        {/* SUBS  */}
-        <h2>Substitutes</h2>
-        <select onChange={(e) => handlePositionChange("SUB", e.target.value)}>
-          <option>Select a substitute</option>
-          {players
-            .filter((p) => p.element_type === 1) // Exclude goalkeepers
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("SUB", e.target.value)}>
-          <option>Select a substitute</option>
-          {players
-            .filter((p) => p.element_type !== 1) // Exclude goalkeepers
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("SUB", e.target.value)}>
-          <option>Select a substitute</option>
-          {players
-            .filter((p) => p.element_type !== 1) // Exclude goalkeepers
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <select onChange={(e) => handlePositionChange("SUB", e.target.value)}>
-          <option>Select a substitute</option>
-          {players
-            .filter((p) => p.element_type !== 1) // Exclude goalkeepers
-            .map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.web_name} ({p.now_cost / 10})
-              </option>
-            ))}
-        </select>
-        <button type="submit" onClick={handleSubmit}>
-          Create Team
-        </button>
-      </div>
     </div>
   );
 }
