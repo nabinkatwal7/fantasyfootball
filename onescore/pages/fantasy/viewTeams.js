@@ -1,98 +1,155 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 
 function viewTeams() {
+  const [players, setPlayers] = useState([]);
+  const [team, setTeam] = useState(null);
 
-  const data = {
-    username: "john",
-    league: "not joined",
-    players: [
-      {
-        name: "Mohamed Salah",
-        position: "MID",
-        cost_now: 12.5,
-      },
-      {
-        name: "Harry Kane",
-        position: "FWD",
-        cost_now: 12.3,
-      },
-      {
-        name: "Trent Alexander-Arnold",
-        position: "DEF",
-        cost_now: 7.5,
-      },
-      {
-        name: "Edouard Mendy",
-        position: "GK",
-        cost_now: 5.2,
-      },
-      {
-        name: "Rúben Dias",
-        position: "DEF",
-        cost_now: 6.1,
-      },
-      {
-        name: "Luke Shaw",
-        position: "DEF",
-        cost_now: 6.5,
-      },
-      {
-        name: "Patrick Bamford",
-        position: "FWD",
-        cost_now: 7.8,
-      },
-      {
-        name: "Son Heung-min",
-        position: "MID",
-        cost_now: 9.1,
-      },
-      {
-        name: "Diogo Jota",
-        position: "FWD",
-        cost_now: 7.4,
-      },
-      {
-        name: "Aaron Wan-Bissaka",
-        position: "DEF",
-        cost_now: 5.2,
-      },
-      {
-        name: "Kevin De Bryune",
-        position: "MID",
-        cost_now: 12.3,
-      },
-    ],
-    points: 85,
-    total_cost: 100.0,
-  };
+  useEffect(() => {
+    const username = localStorage.getItem("username");
+    if (username) {
+      fetch(`http://localhost:5000/teams?username=${username}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setTeam(data);
+        });
+    }
+  }, []);
 
-  const sortedPlayers = data.players.sort((a, b) => {
-    const positions = ["GK", "DEF", "MID", "FWD"];
-    return positions.indexOf(a.position) - positions.indexOf(b.position);
-  });
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      const response = await fetch(
+        "https://fantasy.premierleague.com/api/bootstrap-static/"
+      );
+      const data = await response.json();
+      setPlayers(data.elements);
+    };
+    fetchPlayers();
+  }, []);
+
+  if (!team) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="team-container">
-      <div className="header">
-        <h1>Team Information</h1>
-        <h2>Username: {data.username}</h2>
-        <h2>League: {data.league}</h2>
-      </div>
-      <div className="points">
-        <p>Points: {data.points}</p>
-        <p>Total Cost: {data.total_cost}M</p>
-      </div>
-      <div className="body">
-        {sortedPlayers.map((player, index) => (
-          <div className="player-card" key={index}>
-            <h3>{player.name}</h3>
-            <p>Position: {player.position}</p>
-            <p>Cost: {player.cost_now}M</p>
-          </div>
-        ))}
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <h3>{team.teamname}</h3>
+          </Col>
+          <Col>
+            <h3>{team.username}</h3>
+          </Col>
+        </Row>
+      </Container>
+      {players.map((player) => {
+        return (
+          <Container key={player.id}>
+            <Row>
+              {team.players[0].GK.map((p) => {
+                if (player.id == p) {
+                  return (
+                    <Col key={player.id}>
+                      <Card style={{ width: "7rem" }}>
+                        <Card.Img
+                          variant="top"
+                          src={
+                            "https://resources.premierleague.com/premierleague/photos/players/110x140/p" +
+                            player.code +
+                            ".png"
+                          }
+                        />
+                        <Card.Text>{player.web_name}</Card.Text>
+                        <Card.Text>Pts: {player.event_points}</Card.Text>
+                      </Card>
+                    </Col>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Row>
+            <Row>
+              {team.players[0].DEF.map((p) => {
+                if (player.id == p) {
+                  return (
+                    <Col key={player.id}>
+                      <Card style={{ width: "7rem" }}>
+                        <Card.Img
+                          variant="top"
+                          src={
+                            "https://resources.premierleague.com/premierleague/photos/players/110x140/p" +
+                            player.code +
+                            ".png"
+                          }
+                        />
+                        <Card.Text>{player.web_name}</Card.Text>
+                        <Card.Text>Pts: {player.event_points}</Card.Text>
+                      </Card>
+                    </Col>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Row>
+            <Row>
+              {team.players[0].MID.map((p) => {
+                if (player.id == p) {
+                  return (
+                    <Col key={player.id}>
+                      <Card style={{ width: "7rem" }}>
+                        <Card.Img
+                          variant="top"
+                          src={
+                            "https://resources.premierleague.com/premierleague/photos/players/110x140/p" +
+                            player.code +
+                            ".png"
+                          }
+                        />
+                        <Card.Text>{player.web_name}</Card.Text>
+                        <Card.Text>Pts: {player.event_points}</Card.Text>
+                      </Card>
+                    </Col>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Row>
+            <Row>
+              {team.players[0].FWD.map((p) => {
+                if (player.id == p) {
+                  return (
+                    <Col key={player.id}>
+                      <Card style={{ width: "7rem" }}>
+                        <Card.Img
+                          variant="top"
+                          src={
+                            "https://resources.premierleague.com/premierleague/photos/players/110x140/p" +
+                            player.code +
+                            ".png"
+                          }
+                        />
+                        <Card.Text>{player.web_name}</Card.Text>
+                        <Card.Text>Pts: {player.event_points}</Card.Text>
+                      </Card>
+                    </Col>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </Row>
+          </Container>
+        );
+      })}
     </div>
   );
 }
 
-export default viewTeams
+export default viewTeams;

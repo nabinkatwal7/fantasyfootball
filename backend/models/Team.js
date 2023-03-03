@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 const TeamSchema = new mongoose.Schema({
   username: String,
-  league: String,
+  teamname: String,
   players: [
     {
-      name: String,
-      position: String,
-      cost_now: Number,
+      GK: Array,
+      DEF: Array, 
+      MID: Array,
+      FWD: Array, 
+      SUBS: Array
     },
   ],
-  points: Number,
-  total_cost: Number,
 });
 
 const Team = mongoose.model('Team', TeamSchema);

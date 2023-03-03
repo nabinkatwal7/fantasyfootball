@@ -144,8 +144,17 @@ app.delete("/players/:id", async (req, res) => {
 
 // Define routes for the Team resource
 app.get("/teams", async (req, res) => {
-  const teams = await Team.find();
-  res.json(teams);
+  const { username } = req.query;
+  try {
+    const team = await Team.findOne({ username });
+    if (!team) {
+      return res.status(404).json({ message: "Team not found" });
+    }
+    res.json(team);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 app.get("/teams/:id", async (req, res) => {
@@ -154,10 +163,33 @@ app.get("/teams/:id", async (req, res) => {
 });
 
 app.post("/teams", async (req, res) => {
-  const team = new Team(req.body);
-  await team.save();
-  res.json(team);
-});
+  try {
+    const existingTeam = await Team.findOne({ username: req.body.username });
+    if (existingTeam) {
+      return res.status(400).json({ error: "User already has a team" });
+    }
+
+    const team = new Team({
+      username: req.body.username,
+      teamname: req.body.teamname,
+      players: {
+        GK: req.body.GK,
+        DEF: req.body.DEF,
+        MID: req.body.MID,
+        FWD: req.body.FWD,
+        SUBS: req.body.SUBS,
+      },
+    });
+
+    await team.save(req.body);
+
+    res.status(201).json({ message: "Team Successfully created" });
+    res.json(team);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
+}); 
 
 app.put("/teams/:id", async (req, res) => {
   const team = await Team.findByIdAndUpdate(req.params.id, req.body, {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -20,6 +21,8 @@ function createTeam() {
   let selectedPlayer = {};
   const [teamName, setTeamName] = useState()
   const [hasTeamName, setHasTeamName] = useState(false)
+  const [teamData, setTeamData] = useState([])
+  const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     const name = localStorage.getItem("username");
@@ -37,13 +40,15 @@ function createTeam() {
       return;
     }
     setTeam({
+      ['username']: username,
+      ['teamname']:teamName,
       ...team,
       [position]: [...team[position], playerId],
     });
   };
 
   const saveTeam = async (teamData) => {
-    const response = await fetch("localhost:5000/teams", {
+    const response = await fetch("http://localhost:5000/teams", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,8 +62,14 @@ function createTeam() {
   const handleSubmit = (e) => {
     e.preventDefault();
     createTeamData(team)
-    alert("Team created!", team);
+    saveTeam(team)
+    setRedirect(true);
   };
+
+  if (redirect) {
+    const router = useRouter();
+    router.push("/fantasy");
+  } 
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -79,19 +90,6 @@ function createTeam() {
     event.preventDefault()
     setHasTeamName(true)
   }
-
-  function createTeamData(team) {
-    players.map((player) => {
-      if(team.GK == player.id){
-        selectedPlayer = {
-          'name': player.web_name,
-          'position':'GK',
-          'cost_now':player.cost_now/10
-        }
-      }
-    });
-  }
-
 
   return (
     <div className="createteam-container">
@@ -118,7 +116,7 @@ function createTeam() {
             )}
           </Col>
           <Col>
-            <h3>Username</h3>
+            <h3>{username}</h3>
           </Col>
           <Col>
             <h3>Bank: 100.0M</h3>
