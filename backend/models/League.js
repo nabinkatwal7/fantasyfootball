@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 
 const LeagueSchema = new mongoose.Schema({
     name: String,
-    id: String,
     teams: [{ 
-        name: String, 
+        teamname: String, 
         point: Number
      }]
 });

@@ -357,11 +357,15 @@ app.put("/leagues/:id", async (req, res) => {
 });
 
 app.post("/leagues", async (req, res) => {
-  const { name, id } = req.body;
+  const { name, id, creator, points } = req.body;
+  console.log(req.body)
   const league = new League({
-    name,
-    id,
-    teams: [],
+    name: name,
+    teams: {
+      teamname: creator,
+      points: points
+    },
+
   });
   try {
     await league.save();
@@ -376,6 +380,34 @@ app.put("/leagues/:id", async (req, res) => {
     new: true,
   });
   res.json(league);
+});
+
+app.post("/leagues/:name/join", async (req, res) => {
+  try {
+    const { name } = req.params;
+    const { teamname, point } = req.body;
+    const league = await League.findOne({ name });
+
+    if (!league) {
+      return res
+        .status(404)
+        .json({ error: `League with name ${name} not found` });
+    }
+
+    console.log(req.body)
+
+    const team = {
+      teamname:teamname,
+      point: point,
+    };
+
+    league.teams.push(team);
+    await league.save();
+    res.json(league);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 app.delete("/leagues/:id", async (req, res) => {

@@ -19,20 +19,21 @@ const ViewLeagues = () => {
   const handleCreateLeague = async (e) => {
     e.preventDefault();
     const teamname = sessionStorage.getItem("teamname");
+    const points = sessionStorage.getItem("points")
     const response = await fetch("http://localhost:5000/leagues", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: leagueName, creator: teamname }),
+      body: JSON.stringify({ name: leagueName, creator: teamname, points: points }),
     });
     const data = await response.json();
     setLeagues([...leagues, data]);
     setLeagueName("");
   };
 
-  const handleJoinLeague = (id) => {
-    router.push(`http://localhost:3000/fantasy/league/${leagueName}`);
+  const handleJoinLeague = (name) => {
+    router.push("/fantasy/league/" + name);
   };
 
   return (
@@ -59,7 +60,7 @@ const ViewLeagues = () => {
           <ListGroup.Item
             key={league.id}
             action
-            onClick={() => handleJoinLeague(league.id)}
+            onClick={() => handleJoinLeague(league.name)}
           >
             {league.name}
           </ListGroup.Item>
