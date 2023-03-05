@@ -9,6 +9,9 @@ import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Navba from "react-bootstrap/Navbar";
 
+// import EmbedTable from "../../components/EmbedTable";
+// import Embed from 'react-embed'
+
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ViewDayIcon from "@mui/icons-material/ViewDay";
@@ -127,6 +130,9 @@ function index() {
         </Container>
       </Navba>
       <div className="section-container">
+        {/* <Container>
+          <Embed url="https://cdn.footystats.org/embeds/standings.js" />
+        </Container> */}
         {players.map((player) => {
           if (pid == player.id) {
             const playerteam = teamMap(player.team);

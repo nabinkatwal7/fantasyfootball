@@ -3,7 +3,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 
 function viewTeams() {
   const [players, setPlayers] = useState([]);
@@ -25,6 +24,11 @@ function viewTeams() {
         });
     }
   }, []);
+
+  const saveData = ()=>{
+    sessionStorage.setItem("teamname", JSON.stringify(team.teamname))
+    sessionStorage.setItem("points ", JSON.stringify(totalPoints))
+  }
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -75,6 +79,7 @@ function viewTeams() {
           });
         }
       });
+      saveData()
     }
   };
 

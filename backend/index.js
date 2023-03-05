@@ -323,19 +323,52 @@ app.delete("/fantasyteams/:id", async (req, res) => {
 
 // Define routes for the League resource
 app.get("/leagues", async (req, res) => {
-  const leagues = await League.find();
-  res.json(leagues);
+  try {
+    const leagues = await League.find();
+    res.json(leagues);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 app.get("/leagues/:id", async (req, res) => {
-  const league = await League.findById(req.params.id);
-  res.json(league);
+  try {
+    const league = await League.findById(req.params.id);
+    if (!league) {
+      return res.status(404).send("League not found");
+    }
+    res.json(league);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.put("/leagues/:id", async (req, res) => {
+  try {
+    const { teams } = req.body;
+    const league = await League.findByIdAndUpdate(req.params.id, { teams });
+    if (!league) {
+      return res.status(404).send("League not found");
+    }
+    res.json(league);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 app.post("/leagues", async (req, res) => {
-  const league = new League(req.body);
-  await league.save();
-  res.json(league);
+  const { name, id } = req.body;
+  const league = new League({
+    name,
+    id,
+    teams: [],
+  });
+  try {
+    await league.save();
+    res.status(201).json(league);
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
 app.put("/leagues/:id", async (req, res) => {
