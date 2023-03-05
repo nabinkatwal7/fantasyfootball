@@ -61,14 +61,14 @@ function createTeam() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createTeamData(team)
+    // createTeamData(team)
     saveTeam(team)
     setRedirect(true);
   };
 
   if (redirect) {
     const router = useRouter();
-    router.push("/fantasy");
+    router.push("/viewTeams");
   } 
 
   useEffect(() => {
@@ -118,9 +118,9 @@ function createTeam() {
           <Col>
             <h3>{username}</h3>
           </Col>
-          <Col>
+          {/* <Col>
             <h3>Bank: 100.0M</h3>
-          </Col>
+          </Col> */}
         </Row>
         <Row className="p-5 mt-2">
           <Row className="text-center">

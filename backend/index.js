@@ -160,14 +160,14 @@ app.get("/teams", async (req, res) => {
 app.get("/teams/:id", async (req, res) => {
   const team = await Team.findById(req.params.id);
   res.json(team);
-});
+}); 
 
 app.post("/teams", async (req, res) => {
   try {
     const existingTeam = await Team.findOne({ username: req.body.username });
     if (existingTeam) {
       return res.status(400).json({ error: "User already has a team" });
-    }
+    }  
 
     const team = new Team({
       username: req.body.username,
