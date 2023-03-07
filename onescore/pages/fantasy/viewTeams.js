@@ -27,7 +27,7 @@ function viewTeams() {
 
   const saveData = ()=>{
     sessionStorage.setItem("teamname", JSON.stringify(team.teamname))
-    sessionStorage.setItem("points ", JSON.stringify(totalPoints))
+    sessionStorage.setItem("points", totalPoints)
   }
 
   useEffect(() => {

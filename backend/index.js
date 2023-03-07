@@ -184,7 +184,6 @@ app.post("/teams", async (req, res) => {
     await team.save(req.body);
 
     res.status(201).json({ message: "Team Successfully created" });
-    res.json(team);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });
@@ -385,7 +384,8 @@ app.put("/leagues/:id", async (req, res) => {
 app.post("/leagues/:name/join", async (req, res) => {
   try {
     const { name } = req.params;
-    const { teamname, point } = req.body;
+    const teamname = req.body.teamname 
+    const point = req.body.points
     const league = await League.findOne({ name });
 
     if (!league) {
@@ -394,12 +394,10 @@ app.post("/leagues/:name/join", async (req, res) => {
         .json({ error: `League with name ${name} not found` });
     }
 
-    console.log(req.body)
-
     const team = {
       teamname:teamname,
       point: point,
-    };
+    };  
 
     league.teams.push(team);
     await league.save();
@@ -407,7 +405,7 @@ app.post("/leagues/:name/join", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });
-  }
+  } 
 });
 
 app.delete("/leagues/:id", async (req, res) => {

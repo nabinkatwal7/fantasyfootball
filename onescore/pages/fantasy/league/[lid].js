@@ -7,6 +7,7 @@ function LeagueID() {
   const router = useRouter();
   const { lid } = router.query;
   const [league, setLeague] = useState(null);
+  const [hasJoined, setHasJoined] = useState(false)
 
   useEffect(() => {
     async function fetchLeague() {
@@ -54,12 +55,13 @@ function LeagueID() {
           },
           body: JSON.stringify({
             teamname: teamname,
-            points: points, // replace with actual user info
+            points: points,
           }),
         }
       );
       const data = await response.json();
       setLeague(data);
+      setHasJoined(true)
     } catch (error) {
       console.error(error);
     }
@@ -69,12 +71,10 @@ function LeagueID() {
     return <div className="team-container">Loading...</div>;
   }
 
-  console.log(league.teams)
-
   return (
     <Container className="team-container">
       <h1>{league.name}</h1>
-      <Button onClick={joinLeague}>Join League</Button>
+      {!hasJoined && <Button onClick={joinLeague}>Join League</Button>}
       <Table striped hover variant="dark">
         <thead>
           <tr>

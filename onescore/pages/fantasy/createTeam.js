@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 function createTeam() {
   const [players, setPlayers] = useState([]);
@@ -55,20 +56,17 @@ function createTeam() {
       },
       body: JSON.stringify(teamData),
     });
-    const data = await response.json();
-    return data;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // createTeamData(team)
     saveTeam(team)
     setRedirect(true);
   };
 
   if (redirect) {
     const router = useRouter();
-    router.push("/viewTeams");
+    router.push("/fantasy");
   } 
 
   useEffect(() => {
