@@ -96,9 +96,9 @@ function viewTeams() {
           <Col>
             <h3>{team.teamname}</h3>
           </Col>
-          <Col>
+          {/* <Col>
             <h3>{team.username}</h3>
-          </Col>
+          </Col> */}
           <Col>
             <h3>Gameweek Points: {totalPoints}</h3>
           </Col>
@@ -112,7 +112,7 @@ function viewTeams() {
           {gk.map((p) => {
             return (
               <Col sm={3} key={p.id}>
-                <Card style={{ width: "8rem" }}>
+                <Card style={{ width: "100%" }} className="text-center">
                   <Card.Img
                     variant="top"
                     src={
@@ -130,11 +130,11 @@ function viewTeams() {
             );
           })}
         </Row>
-        <Row className="p-5 mt-2">
+        <Row className="mt-2">
           {def.map((p) => {
             return (
               <Col key={p.id}>
-                <Card style={{ width: "7rem" }}>
+                <Card style={{ width: "100%" }} className="px-2 text-center">
                   <Card.Img
                     variant="top"
                     src={
@@ -152,11 +152,11 @@ function viewTeams() {
             );
           })}
         </Row>
-        <Row className="p-5 mt-2">
+        <Row className="mt-2">
           {mid.map((p) => {
             return (
               <Col key={p.id}>
-                <Card style={{ width: "7rem" }}>
+                <Card style={{ width: "80%" }} className="text-center">
                   <Card.Img
                     variant="top"
                     src={
@@ -178,7 +178,7 @@ function viewTeams() {
           {fwd.map((p) => {
             return (
               <Col key={p.id}>
-                <Card style={{ width: "7rem" }}>
+                <Card style={{ width: "80%" }} className='text-center'>
                   <Card.Img
                     variant="top"
                     src={

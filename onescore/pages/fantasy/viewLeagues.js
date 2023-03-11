@@ -37,7 +37,7 @@ const ViewLeagues = () => {
   };
 
   return (
-    <Container>
+    <Container className="createleague">
       <h2>Create a League</h2>
       <Form onSubmit={handleCreateLeague}>
         <Form.Group controlId="formLeagueName">

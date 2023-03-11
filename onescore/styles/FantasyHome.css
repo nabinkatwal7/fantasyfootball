@@ -1,8 +1,12 @@
 .home-page-container{
-    margin-top: 80px;
+    margin-top: 115px;
     margin-left: 35%;
     display: flex;
     scroll-behavior: smooth;
     height: 1080px;
+}
+
+.margn-navbar{
+    margin-top: 74px !important;
 }
 

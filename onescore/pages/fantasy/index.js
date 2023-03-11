@@ -102,13 +102,16 @@ function index() {
 
   return (
     <div className="home-page-container">
-      <Navba fixed="bottom" bg="primary" variant="dark">
+      <Navba
+        style={{ "background-color": "#443C68" }}
+        fixed="top"
+        className="mt-5 margn-navbar"
+      >
         <Container>
           {isLoggedIn && (
-            <Nav className="navbarr me-auto navbar navbar-dark bg-primary">
-              <Nav.Link href="/fantasy/createTeam">Profile</Nav.Link>
+            <Nav className="navbarr navbar navbar-dark">
               <Nav.Link href="/fantasy/createTeam">Create Team</Nav.Link>
-              <Nav.Link href="/fantasy/viewTeams">View Teams</Nav.Link>
+              <Nav.Link href="/fantasy/viewTeams">View Team</Nav.Link>
               <Nav.Link href="/fantasy/viewPlayers">View Players</Nav.Link>
               <Nav.Link href="/fantasy/viewLeagues">View Leagues</Nav.Link>
             </Nav>
@@ -129,7 +132,7 @@ function index() {
           )}
         </Container>
       </Navba>
-      <div className="section-container">
+      <div className="section-container mt-5">
         {/* <Container>
           <Embed url="https://cdn.footystats.org/embeds/standings.js" />
         </Container> */}

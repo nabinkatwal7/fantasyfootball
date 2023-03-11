@@ -113,9 +113,9 @@ function createTeam() {
               </Form>
             )}
           </Col>
-          <Col>
+          {/* <Col>
             <h3>{username}</h3>
-          </Col>
+          </Col> */}
           {/* <Col>
             <h3>Bank: 100.0M</h3>
           </Col> */}

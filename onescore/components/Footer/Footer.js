@@ -7,13 +7,13 @@ import LanguageIcon from "@mui/icons-material/Language";
 
 function Footer() {
   return (
-    <div>
+    <div className="sticky-bottom">
       <footer
         className="text-center text-white"
         style={{ "background-color": "#f1f1f1" }}
       >
-        <div className="container pt-4">
-          <section className="mb-4">
+        <div className="container">
+          <section className="mb-2">
             <Link
               className="btn btn-link btn-floating btn-lg text-dark m-1"
               role="button"

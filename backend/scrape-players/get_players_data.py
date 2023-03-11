@@ -1,10 +1,3 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-=Get Players' Data=
-Scrapes all of the players' urls to get individual data from each one.
-"""
-
 import selenium_func as sel
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait

@@ -1,5 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
+
 """
 =Get Players' Data=
 Scrapes all of the players' urls to get individual data from each one.
@@ -458,11 +457,6 @@ if __name__ == "__main__":
     #join_datasets()
     #to_csv()
     pass
-
-
-
-
-
 
 
 

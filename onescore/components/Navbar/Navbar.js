@@ -10,13 +10,17 @@ import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 function Navbar() {
   return (
     <div>
-      <Navba fixed="top" bg="primary" variant="dark">
+      <Navba
+        style={{ "background-color": "rgb(119 132 153 / 75%)" }}
+        className="mb-5"
+        fixed="top"
+      >
         <Container>
           <Navba.Brand href="/">
             <SportsSoccerIcon />
             OneScore
           </Navba.Brand>
-          <Nav className="navbarr me-auto navbar navbar-dark bg-primary">
+          <Nav className="navbarr me-auto navbar navbar-dark">
             <Nav.Link href="/">Live Score</Nav.Link>
             <Nav.Link href="/fantasy">Fantasy</Nav.Link>
           </Nav>
