@@ -1,30 +1,30 @@
 import React from "react";
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // import Clock from "react-live-clock";
 
 import Card from "react-bootstrap/Card";
 
 function Index() {
-  // const [livescores, setLivescores] = useState([]);
+  const [livescores, setLivescores] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/livescore")
-  //     .then((res) => res.json())
-  //     .then((data) => setLivescores(data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:5000/livescore")
+      .then((res) => res.json())
+      .then((data) => setLivescores(data))
+      .catch((err) => console.log(err));
+  }, []);
 
-  // function dateTime(utcDate){
-  //   var localDate = new Date(utcDate).toString()
-  //   return localDate.slice(0,28)
-  // }
+  function dateTime(utcDate){
+    var localDate = new Date(utcDate).toString()
+    return localDate.slice(0,28)
+  }
  
   return (
     <div className="livescore">
       {/* <Clock/> */}
       <h3 className="matchestoday">Matches today:</h3>
-      <div className="livescorecard ">
+      {/* <div className="livescorecard ">
         <Card style={{ width: "22rem", height: "42rem" }}>
           <Card.Img
             variant="top"
@@ -60,8 +60,8 @@ function Index() {
             </Card.Text>
           </Card.Body>
         </Card>
-      </div>
-      {/* {livescores.map((livescore) => (
+      </div> */}
+      {livescores.map((livescore) => (
         <div key={livescore.index} className="livescorecard ">
           <Card style={{ width: "22rem", height: "42rem" }}>
             <Card.Img variant="top" src={livescore.competition.emblem} />
@@ -97,7 +97,7 @@ function Index() {
             </Card.Body>
           </Card>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 }
